@@ -8,7 +8,9 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField]
-    private float Speed;
+    private float Speed;  
+    [SerializeField]
+    private AnimationCurve SpeedCurve;
 
     /// <summary>
     /// Check the controls
@@ -47,39 +49,34 @@ public class Mover : MonoBehaviour
     /// <returns></returns>
     private IEnumerator _Move(KeyCode key, Vector2 direction)
     {
-        int momentum = 0;
+        float momentum = 0;
 
-        //startup
+        //While the player is holding the button
         while (Input.GetKey(key) && momentum < 10)
         {
-            transform.Translate(direction * (Speed * 0.1f * momentum) * Time.deltaTime);
-            momentum++;
+            //Speed the player up
+            if (momentum < SpeedCurve.keys[1].time)
+            {
+                transform.Translate(direction * (Speed * SpeedCurve.Evaluate(momentum)) * Time.fixedDeltaTime);
+                momentum += Time.fixedDeltaTime;
+            }
+            //Player moves at max speed
+            else
+            {
+                transform.Translate(direction * (Speed * SpeedCurve.Evaluate(0.5f)) * Time.fixedDeltaTime);
+            }
+
             yield return new WaitForFixedUpdate();
         }
 
-        //full speed
-        while (Input.GetKey(key))
+        //When the player lets go of the button
+        momentum = SpeedCurve.keys[SpeedCurve.keys.Length - 1].time;
+        //Slow the player down
+        while (momentum < 1)
         {
-            transform.Translate(direction * Speed * Time.deltaTime);
+            transform.Translate(direction * (Speed * SpeedCurve.Evaluate(momentum)) * Time.fixedDeltaTime);
+            momentum += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-
-        //slowdown
-        while (momentum > 0)
-        {
-            transform.Translate(direction * (Speed * 0.1f * momentum) * Time.deltaTime);
-            momentum--;
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    /// <summary>
-    /// Moves the object
-    /// </summary>
-    /// <param name="direction">The direction the object is moving in</param>
-    /// <param name="speed">The speed the object is moving at</param>
-    private void Move(Vector2 direction, float speed)
-    {
-        transform.Translate(direction * Speed * Time.deltaTime);
     }
 }

@@ -5,8 +5,12 @@ using UnityEngine;
 /// <summary>
 /// Moves the character left or right
 /// </summary>
+[RequireComponent(typeof(Rigidbody2D))]
 public class Mover : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody2D Rigidbody;
+    [Space]
     [SerializeField]
     private float Speed;  
     [SerializeField]
@@ -21,13 +25,13 @@ public class Mover : MonoBehaviour
         if (Input.GetKeyDown(Controls.Instance.Right))
         {
             //Move right
-            StartMove(Controls.Instance.Right, Vector2.right);
+            StartMove(Controls.Instance.Right, 1);
         }
         //If the player is pressing the left button
         else if (Input.GetKeyDown(Controls.Instance.Left))
         {
             //Move left
-            StartMove(Controls.Instance.Left, Vector2.left);
+            StartMove(Controls.Instance.Left, -1);
         }
     }
 
@@ -36,7 +40,7 @@ public class Mover : MonoBehaviour
     /// </summary>
     /// <param name="key">The key that's pressed</param>
     /// <param name="direction">The direction the object is moving in</param>
-    private void StartMove(KeyCode key, Vector2 direction)
+    private void StartMove(KeyCode key, int direction)
     {
         StartCoroutine(_Move(key, direction));
     }
@@ -46,24 +50,21 @@ public class Mover : MonoBehaviour
     /// </summary>
     /// <param name="key">The key that's pressed</param>
     /// <param name="direction">The direction the object is moving in</param>
-    /// <returns></returns>
-    private IEnumerator _Move(KeyCode key, Vector2 direction)
+    private IEnumerator _Move(KeyCode key, int direction)
     {
         float momentum = 0;
-
-        //While the player is holding the button
         while (Input.GetKey(key) && momentum < 10)
         {
-            //Speed the player up
             if (momentum < SpeedCurve.keys[1].time)
             {
-                transform.Translate(direction * (Speed * SpeedCurve.Evaluate(momentum)) * Time.fixedDeltaTime);
+                //Speed the player up
+                Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(momentum)), Rigidbody.velocity.y);
                 momentum += Time.fixedDeltaTime;
             }
-            //Player moves at max speed
             else
             {
-                transform.Translate(direction * (Speed * SpeedCurve.Evaluate(0.5f)) * Time.fixedDeltaTime);
+                //Player moves at max speed
+                Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(0.5f)), Rigidbody.velocity.y);
             }
 
             yield return new WaitForFixedUpdate();
@@ -71,12 +72,15 @@ public class Mover : MonoBehaviour
 
         //When the player lets go of the button
         momentum = SpeedCurve.keys[SpeedCurve.keys.Length - 1].time;
-        //Slow the player down
         while (momentum < 1)
         {
-            transform.Translate(direction * (Speed * SpeedCurve.Evaluate(momentum)) * Time.fixedDeltaTime);
+            //Slow the player down
+            Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(momentum)), Rigidbody.velocity.y);
             momentum += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+
+        //Make the player stand still completely (negates sliding of the rigidbody)
+        Rigidbody.velocity = new Vector2(0, Rigidbody.velocity.y);
     }
 }

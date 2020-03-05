@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Allows the character to jump
 /// </summary>
+[RequireComponent(typeof(Rigidbody2D))]
 public class Jumper : MonoBehaviour
 {
     [SerializeField]
@@ -17,14 +18,25 @@ public class Jumper : MonoBehaviour
     [SerializeField]
     private Transform Head;
     [SerializeField]
-    private Transform[] Feet;
+    private float HeadRadius = 0.1f;
+
+    [Space]
     [SerializeField]
-    private float CheckRadius;
+    private Transform Feet;
+    [SerializeField]
+    private float FeetRadius = 0.3f;
     [SerializeField]
     private LayerMask GroundMask;
 
-    private bool Grounded = true;
-    private bool Liftoff = false;
+    private bool Grounded = false;
+
+    [Space]
+    [Header("CoyoteTime")]
+    [SerializeField]
+    private float AirTime = 0.15f;
+
+    private bool InCoyoteTime = false;
+    private bool Jumping = false;
 
     /// <summary>
     /// Check the controls
@@ -34,35 +46,39 @@ public class Jumper : MonoBehaviour
         //if the player is allowed to jump, and is pressing the jump button
         if (Grounded && Input.GetKeyDown(Controls.Instance.Jump))
         {
-            StartCoroutine(_LiftoffTimer(0.2f));
             StartCoroutine(_Jump());
         }
     }
 
-    // Checks if the player is grounded
+    /// <summary>
+    /// Checks if the player is grounded
+    /// </summary>
     void FixedUpdate()
     {
-        // is the player not jumping
-        Grounded = IsGrounded();
+        if (!InCoyoteTime)
+        {
+            bool onground = Physics2D.OverlapBox(Feet.position, new Vector2(Feet.lossyScale.x, Feet.lossyScale.y)/10.0f, 0, GroundMask);         
+            if (Grounded && !onground)
+            {
+                //if the player just left the ground, give them some coyote time
+                StartCoroutine(_CoyoteTime());
+            }
+            else
+            {
+                Grounded = onground;
+            }
+        }
     }
 
-    private bool IsGrounded()
+    /// <summary>
+    /// Allows the player to jump when they've just left the platform
+    /// </summary>
+    private IEnumerator _CoyoteTime()
     {
-        if (!Liftoff)
-        {
-            bool onground = false;
-            foreach (Transform foot in Feet)
-            {
-                if (!onground && Physics2D.OverlapCircle(foot.position, CheckRadius, GroundMask))
-                {
-                    onground = true;
-                }
-            }
-
-            return onground;
-        }
-
-        return false;      
+        InCoyoteTime = true;
+        yield return new WaitForSeconds(AirTime);
+        InCoyoteTime = false;
+        Grounded = false;
     }
 
     /// <summary>
@@ -71,11 +87,13 @@ public class Jumper : MonoBehaviour
     /// <returns></returns>
     private IEnumerator _Jump()
     {
+        Jumping = true;
+        Grounded = false;
+
         float multiplier = 0.25f;
         float duration = 0;
         while (duration < JumpCurve.keys[JumpCurve.keys.Length - 1].time)
         {
-
             //If the jump multiplier isnt maxed out, and the player is holding the jump button
             if (multiplier < 1 && Input.GetKey(Controls.Instance.Jump))
             {
@@ -83,35 +101,22 @@ public class Jumper : MonoBehaviour
                 multiplier += Time.deltaTime * 5;
             }
 
-            //Check if the player is right above a ceiling or on the ground
-            if (Physics2D.OverlapCircle(Head.position, CheckRadius, GroundMask))
-            {
-                duration = JumpCurve.keys[JumpCurve.keys.Length - 2].time;
-                print("bopped");
-            }
-            if (IsGrounded())
-            {
-                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
-            }
-
             transform.Translate(Vector2.up * JumpCurve.Evaluate(duration) * multiplier);
             duration += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
-        }
-    }
 
-    /// <summary>
-    /// Turns liftoff on for one physics-update (prevents ground check during liftoff)
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator _LiftoffTimer(float time)
-    {
-        Liftoff = true;
-        while (time > 0)
-        {
-            time -= Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            //Check if the player is right above a ceiling or on the ground
+            if (Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y)/10.0f, 0, GroundMask))
+            {
+                duration = JumpCurve.keys[JumpCurve.keys.Length - 2].time;
+            }
+
+            if (Grounded)
+            {
+                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
+            }
         }
-        Liftoff = false;
+
+        Jumping = false;
     }
 }

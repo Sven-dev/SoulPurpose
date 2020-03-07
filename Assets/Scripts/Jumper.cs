@@ -37,6 +37,7 @@ public class Jumper : MonoBehaviour
 
     private bool InCoyoteTime = false;
     private bool Jumping = false;
+    private bool JustJumped = false;
 
     /// <summary>
     /// Check the controls
@@ -44,7 +45,7 @@ public class Jumper : MonoBehaviour
     private void Update()
     {
         //if the player is allowed to jump, and is pressing the jump button
-        if (Grounded && Input.GetKeyDown(Controls.Instance.Jump))
+        if (Input.GetKeyDown(Controls.Instance.Jump) && Grounded)
         {
             StartCoroutine(_Jump());
         }
@@ -63,11 +64,55 @@ public class Jumper : MonoBehaviour
                 //if the player just left the ground, give them some coyote time
                 StartCoroutine(_CoyoteTime());
             }
-            else
+            else if (!JustJumped)
             {
                 Grounded = onground;
             }
         }
+    }
+
+    /// <summary>
+    /// Makes the player jump according to 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator _Jump()
+    {
+        StartCoroutine(_JumpTime());
+
+        Grounded = false;
+        Jumping = true;
+
+        float multiplier = 0.3f;
+        float duration = 0;
+
+        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
+        while (duration < JumpCurve.keys[JumpCurve.keys.Length - 1].time)
+        {
+            //If the jump multiplier isnt maxed out, and the player is holding the jump button
+            if (multiplier < 1 && Input.GetKey(Controls.Instance.Jump))
+            {
+                //Increase the multiplier
+                multiplier += Time.deltaTime * 5;
+            }
+
+            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpCurve.Evaluate(duration) * multiplier);
+            duration += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+
+            //Check if the player is right above a ceiling or on the ground
+            if (Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y)/10.0f, 0, GroundMask))
+            {
+                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
+            }
+
+            //Check if the player is on the ground again
+            if (duration > 0.4f && Grounded)
+            {
+                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
+            }
+        }
+
+        Jumping = false;
     }
 
     /// <summary>
@@ -82,41 +127,12 @@ public class Jumper : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes the player jump according to 
+    /// Prevents double jumping right due to coyote time
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator _Jump()
+    private IEnumerator _JumpTime()
     {
-        Jumping = true;
-        Grounded = false;
-
-        float multiplier = 0.25f;
-        float duration = 0;
-        while (duration < JumpCurve.keys[JumpCurve.keys.Length - 1].time)
-        {
-            //If the jump multiplier isnt maxed out, and the player is holding the jump button
-            if (multiplier < 1 && Input.GetKey(Controls.Instance.Jump))
-            {
-                //Increase the multiplier
-                multiplier += Time.deltaTime * 5;
-            }
-
-            transform.Translate(Vector2.up * JumpCurve.Evaluate(duration) * multiplier);
-            duration += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-
-            //Check if the player is right above a ceiling or on the ground
-            if (Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y)/10.0f, 0, GroundMask))
-            {
-                duration = JumpCurve.keys[JumpCurve.keys.Length - 2].time;
-            }
-
-            if (Grounded)
-            {
-                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
-            }
-        }
-
-        Jumping = false;
+        JustJumped = true;
+        yield return new WaitForSeconds(AirTime);
+        JustJumped = false;
     }
 }

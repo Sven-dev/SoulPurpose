@@ -35,8 +35,14 @@ public class Jumper : MonoBehaviour
     [SerializeField]
     private float AirTime = 0.15f;
 
+    [Space]
+    [Header("JumpReminder")]
+    [SerializeField][Tooltip("Allows the player to jump after they pressed the button")]
+    private float RemindTime = 0.1f;
+
     private bool InCoyoteTime = false;
     private bool Jumping = false;
+    private bool JumpPrevented = false;
     private bool JustJumped = false;
 
     /// <summary>
@@ -44,8 +50,23 @@ public class Jumper : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //if the player is allowed to jump, and is pressing the jump button
-        if (Input.GetKeyDown(Controls.Instance.Jump) && Grounded)
+        //if the player is pressing the jump button
+        if (Input.GetKeyDown(Controls.Instance.Jump))
+        {
+            //If the player is already grounded
+            if (Grounded)
+            {
+                StartCoroutine(_Jump());
+            }
+            else
+            {
+                //Start a jump timer
+                StartCoroutine(_JustJumped());
+            }
+        }
+
+        //If the player touches the ground when the timer is still going
+        if (JustJumped && Grounded)
         {
             StartCoroutine(_Jump());
         }
@@ -64,7 +85,7 @@ public class Jumper : MonoBehaviour
                 //if the player just left the ground, give them some coyote time
                 StartCoroutine(_CoyoteTime());
             }
-            else if (!JustJumped)
+            else if (!JumpPrevented)
             {
                 Grounded = onground;
             }
@@ -77,7 +98,7 @@ public class Jumper : MonoBehaviour
     /// <returns></returns>
     private IEnumerator _Jump()
     {
-        StartCoroutine(_JumpTime());
+        StartCoroutine(_JumpPrevent());
 
         Grounded = false;
         Jumping = true;
@@ -129,10 +150,20 @@ public class Jumper : MonoBehaviour
     /// <summary>
     /// Prevents double jumping right due to coyote time
     /// </summary>
-    private IEnumerator _JumpTime()
+    private IEnumerator _JumpPrevent()
+    {
+        JumpPrevented = true;
+        yield return new WaitForSeconds(AirTime);
+        JumpPrevented = false;
+    }
+
+    /// <summary>
+    /// Allows the player to jump for a little longer after pressing the button
+    /// </summary>
+    private IEnumerator _JustJumped()
     {
         JustJumped = true;
-        yield return new WaitForSeconds(AirTime);
+        yield return new WaitForSeconds(RemindTime);
         JustJumped = false;
     }
 }

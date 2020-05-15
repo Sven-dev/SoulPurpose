@@ -8,13 +8,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Mover : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D Rigidbody;
-    [Space]
-    [SerializeField]
-    private float Speed;  
-    [SerializeField]
-    private AnimationCurve SpeedCurve;
+    [SerializeField] private Rigidbody2D Rigidbody;
+    [SerializeField] private CustomAnimator Animator;
+    [Space][Header("Walking")]
+    [SerializeField] private float Speed;  
+    [SerializeField] private AnimationCurve SpeedCurve;
+
+    private IEnumerator Coroutine;
+
+    public bool Walking
+    {
+        get
+        {
+            if (Coroutine != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
 
     /// <summary>
     /// Check the controls
@@ -42,7 +55,13 @@ public class Mover : MonoBehaviour
     /// <param name="direction">The direction the object is moving in</param>
     private void StartMove(KeyCode key, int direction)
     {
-        StartCoroutine(_Move(key, direction));
+        if (Coroutine != null)
+        {
+            StopCoroutine(Coroutine);
+        }
+
+        Coroutine = _Move(key, direction);
+        StartCoroutine(Coroutine);
     }
 
     /// <summary>
@@ -52,6 +71,9 @@ public class Mover : MonoBehaviour
     /// <param name="direction">The direction the object is moving in</param>
     private IEnumerator _Move(KeyCode key, int direction)
     {
+        yield return null;
+        Animator.Walk(direction);
+
         float momentum = 0;
         while (Input.GetKey(key) && momentum < 10)
         {
@@ -82,5 +104,8 @@ public class Mover : MonoBehaviour
 
         //Make the player stand still completely (negates sliding of the rigidbody)
         Rigidbody.velocity = new Vector2(0, Rigidbody.velocity.y);
+        Animator.Idle(direction);
+
+        Coroutine = null;
     }
 }

@@ -8,35 +8,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Jumper : MonoBehaviour
 {
-    [SerializeField]
-    private AnimationCurve JumpCurve;
-    [SerializeField]
-    private Rigidbody2D Rigidbody;
+    [SerializeField] private Rigidbody2D Rigidbody;
+    [SerializeField] private CustomAnimator Animator;
+
+    [Space][Header("Jumping")]
+    [SerializeField] private AnimationCurve JumpCurve;
+
+    [Space][Header("Ground & ceiling detection")]
+    [SerializeField] private Transform Head;
+    [SerializeField] private float HeadRadius = 0.1f;
 
     [Space]
-    [Header("Ground & ceiling detection")]
-    [SerializeField]
-    private Transform Head;
-    [SerializeField]
-    private float HeadRadius = 0.1f;
-
-    [Space]
-    [SerializeField]
-    private Transform Feet;
-    [SerializeField]
-    private float FeetRadius = 0.3f;
-    [SerializeField]
-    private LayerMask GroundMask;
-
+    [SerializeField] private Transform Feet;
+    [SerializeField] private float FeetRadius = 0.3f;
+    [SerializeField] private LayerMask GroundMask;
     private bool Grounded = false;
 
-    [Space]
-    [Header("CoyoteTime")]
-    [SerializeField]
-    private float AirTime = 0.15f;
+    [Space][Header("CoyoteTime")]
+    [SerializeField] private float AirTime = 0.15f;
 
-    [Space]
-    [Header("JumpReminder")]
+    [Space][Header("JumpReminder")]
     [SerializeField][Tooltip("Allows the player to jump after they pressed the button")]
     private float RemindTime = 0.1f;
 
@@ -44,6 +35,8 @@ public class Jumper : MonoBehaviour
     private bool Jumping = false;
     private bool JumpPrevented = false;
     private bool JustJumped = false;
+    private bool GroundCheckable = true;
+    private bool Falling = false;
 
     /// <summary>
     /// Check the controls
@@ -73,13 +66,21 @@ public class Jumper : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if the player is grounded
+    /// Checks if the player is grounded every physics-update (0.2 seconds)
     /// </summary>
     void FixedUpdate()
     {
         if (!InCoyoteTime)
         {
-            bool onground = Physics2D.OverlapBox(Feet.position, new Vector2(Feet.lossyScale.x, Feet.lossyScale.y)/10.0f, 0, GroundMask);         
+            bool onground = Physics2D.OverlapBox(Feet.position, new Vector2(Feet.lossyScale.x, Feet.lossyScale.y)/10.0f, 0, GroundMask);
+
+            if (!Grounded && onground)
+            {
+                //if the player just landed
+                Falling = false;
+                Animator.Land();
+            }
+
             if (Grounded && !onground)
             {
                 //if the player just left the ground, give them some coyote time
@@ -90,18 +91,30 @@ public class Jumper : MonoBehaviour
                 Grounded = onground;
             }
         }
+
+        //Check if the player is falling
+        if (!Falling)
+        {
+            if (Rigidbody.velocity.y < -0.1f)
+            {
+                Animator.Fall();
+                Falling = true;
+            }
+        }
     }
 
     /// <summary>
-    /// Makes the player jump according to 
+    /// Makes the player jump
     /// </summary>
-    /// <returns></returns>
     private IEnumerator _Jump()
     {
-        StartCoroutine(_JumpPrevent());
-
         Grounded = false;
         Jumping = true;
+
+        Animator.Jump();
+
+        StartCoroutine(_JumpPrevent());
+        StartCoroutine(_CoyoteTime());
 
         float multiplier = 0.3f;
         float duration = 0;
@@ -132,6 +145,7 @@ public class Jumper : MonoBehaviour
                 duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
             }
         }
+
 
         Jumping = false;
     }

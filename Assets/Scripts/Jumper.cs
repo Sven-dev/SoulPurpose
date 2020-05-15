@@ -63,33 +63,12 @@ public class Jumper : MonoBehaviour
         {
             StartCoroutine(_Jump());
         }
-    }
 
-    /// <summary>
-    /// Checks if the player is grounded every physics-update (0.2 seconds)
-    /// </summary>
-    void FixedUpdate()
-    {
-        if (!InCoyoteTime)
+        if (GetGround() == true)
         {
-            bool onground = Physics2D.OverlapBox(Feet.position, new Vector2(Feet.lossyScale.x, Feet.lossyScale.y)/10.0f, 0, GroundMask);
-
-            if (!Grounded && onground)
-            {
-                //if the player just landed
-                Falling = false;
-                Animator.Land();
-            }
-
-            if (Grounded && !onground)
-            {
-                //if the player just left the ground, give them some coyote time
-                StartCoroutine(_CoyoteTime());
-            }
-            else if (!JumpPrevented)
-            {
-                Grounded = onground;
-            }
+            //if the player just landed
+            Falling = false;
+            Animator.Land();
         }
 
         //Check if the player is falling
@@ -101,6 +80,34 @@ public class Jumper : MonoBehaviour
                 Falling = true;
             }
         }
+    }
+
+    /// <summary>
+    /// Checks if the player is grounded every physics-update (0.2 seconds)
+    /// </summary>
+    void FixedUpdate()
+    {
+        if (!InCoyoteTime)
+        {
+            bool onground = GetGround();
+            if (Grounded && !onground)
+            {
+                //if the player just left the ground, give them some coyote time
+                StartCoroutine(_CoyoteTime());
+            }
+            else if (!JumpPrevented)
+            {
+                Grounded = onground;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if the player is standing on ground
+    /// </summary>
+    private bool GetGround()
+    {
+        return Physics2D.OverlapBox(Feet.position, new Vector2(Feet.lossyScale.x, Feet.lossyScale.y) / 10.0f, 0, GroundMask);
     }
 
     /// <summary>

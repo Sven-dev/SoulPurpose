@@ -13,9 +13,6 @@ public class CustomAnimator : MonoBehaviour
     [Space]
     [SerializeField] private Mover Mover;
 
-    private bool Jumping = false;
-    private bool Falling = false;
-
     /// <summary>
     /// Plays idle animations
     /// </summary>
@@ -23,10 +20,7 @@ public class CustomAnimator : MonoBehaviour
     public void Idle(int direction)
     {
         SetDirection(direction);
-        if (!Jumping || Falling)
-        {
-            Legs.Play("Feet Idle");
-        }
+        Legs.SetBool("Idle", true);
     }
 
     /// <summary>
@@ -36,10 +30,7 @@ public class CustomAnimator : MonoBehaviour
     public void Walk(int direction)
     {
         SetDirection(direction);
-        if (!Jumping || Falling)
-        {
-            Legs.Play("Feet Walk");
-        }
+        Legs.SetBool("Idle", false);
     }
 
     /// <summary>
@@ -47,14 +38,16 @@ public class CustomAnimator : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        Jumping = true;
-        Legs.Play("Feet Jump");
-        Torso.Play("Armed Jump");
+        if (!Torso.GetBool("Melee Attacking"))
+        {
+            Torso.SetTrigger("Jump");
+            Legs.SetTrigger("Jump");
+        }
     }
 
     public void Fall()
     {
-        Torso.Play("Armed Fall");
+        Torso.SetBool("Falling", true);
     }
 
     /// <summary>
@@ -62,17 +55,14 @@ public class CustomAnimator : MonoBehaviour
     /// </summary>
     public void Land()
     {
-        Jumping = false;
-        Torso.Play("Armed Right Idle");
+        Torso.SetBool("Jumping", false);
+        Torso.SetBool("Falling", false);
+    }
 
-        if (Mover.Walking)
-        {
-            Legs.Play("Feet Walk");
-        }
-        else
-        {
-            Legs.Play("Feet Idle");
-        }
+    public void MeleeAttack()
+    {
+        Torso.SetTrigger("Melee Attack");
+        Torso.SetBool("Melee Attacking", true);
     }
 
     /// <summary>

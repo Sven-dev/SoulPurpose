@@ -14,6 +14,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private float Speed;  
     [SerializeField] private AnimationCurve SpeedCurve;
 
+    [HideInInspector] public int Direction;
     private IEnumerator Coroutine;
 
     public bool Walking
@@ -60,6 +61,7 @@ public class Mover : MonoBehaviour
             StopCoroutine(Coroutine);
         }
 
+        Direction = direction;
         Coroutine = _Move(key, direction);
         StartCoroutine(Coroutine);
     }

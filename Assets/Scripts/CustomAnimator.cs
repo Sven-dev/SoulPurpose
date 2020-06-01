@@ -21,6 +21,7 @@ public class CustomAnimator : MonoBehaviour
     {
         SetDirection(direction);
         Legs.SetBool("Idle", true);
+        Torso.SetBool("Walking", false);
     }
 
     /// <summary>
@@ -31,23 +32,37 @@ public class CustomAnimator : MonoBehaviour
     {
         SetDirection(direction);
         Legs.SetBool("Idle", false);
+        Torso.SetBool("Walking", true);
     }
 
     /// <summary>
-    /// Plays jump animations
+    /// Plays jump animation
     /// </summary>
     public void Jump()
     {
+        Torso.SetBool("Jumping", true);
+        Legs.SetBool("Jumping", true);
+
         if (!Torso.GetBool("Melee Attacking"))
         {
             Torso.SetTrigger("Jump");
-            Legs.SetTrigger("Jump");
+            Legs.SetTrigger("Jump");         
         }
+    }
+
+    /// <summary>
+    /// Gets called when the player is hanging in mid-air
+    /// </summary>
+    public void Hang()
+    {
+        Torso.SetBool("Hanging", true);
+        Legs.SetBool("Hanging", true);
     }
 
     public void Fall()
     {
         Torso.SetBool("Falling", true);
+        Legs.SetBool("Falling", true);
     }
 
     /// <summary>
@@ -56,7 +71,13 @@ public class CustomAnimator : MonoBehaviour
     public void Land()
     {
         Torso.SetBool("Jumping", false);
+        Legs.SetBool("Jumping", false);
+
+        Torso.SetBool("Hanging", false);
+        Legs.SetBool("Hanging", false);
+
         Torso.SetBool("Falling", false);
+        Legs.SetBool("Falling", false);
     }
 
     public void MeleeAttack()

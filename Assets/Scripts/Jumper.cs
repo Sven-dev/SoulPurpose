@@ -36,6 +36,7 @@ public class Jumper : MonoBehaviour
     private bool JumpPrevented = false;
     private bool JustJumped = false;
     private bool GroundCheckable = true;
+    private bool Hanging = false;
     private bool Falling = false;
 
     /// <summary>
@@ -64,21 +65,31 @@ public class Jumper : MonoBehaviour
             StartCoroutine(_Jump());
         }
 
-        if (GetGround() == true)
-        {
-            //if the player just landed
-            Falling = false;
-            Animator.Land();
-        }
-
         //Check if the player is falling
-        if (!Falling)
+        if (!Hanging)
         {
-            if (Rigidbody.velocity.y < -0.1f)
+            float velocity = Rigidbody.velocity.y;
+            if (velocity > -1.5f && velocity < 1.5f)
+            {
+                Animator.Hang();
+                Hanging = true;
+            }
+        }
+        else if (!Falling)
+        {
+            if (Rigidbody.velocity.y < -1.5f)
             {
                 Animator.Fall();
                 Falling = true;
             }
+        }
+
+        //Check if the player is landing
+        if (GetGround() == true)
+        {
+            Hanging = false;
+            Falling = false;
+            Animator.Land();
         }
     }
 

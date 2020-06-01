@@ -95,11 +95,11 @@ public class CustomAnimator : MonoBehaviour
         switch(direction)
         {
             case 1:
-                TorsoRenderer.flipX = false;
+                Torso.SetBool("Facing Right", true);
                 LegsRenderer.flipX = false;
                 break;
             case -1:
-                TorsoRenderer.flipX = true;
+                Torso.SetBool("Facing Right", false);
                 LegsRenderer.flipX = true;
                 break;
             default:

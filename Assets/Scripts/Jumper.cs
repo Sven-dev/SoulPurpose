@@ -126,46 +126,48 @@ public class Jumper : MonoBehaviour
     /// </summary>
     private IEnumerator _Jump()
     {
-        Grounded = false;
-        Jumping = true;
-
-        Animator.Jump();
-
-        StartCoroutine(_JumpPrevent());
-        StartCoroutine(_CoyoteTime());
-
-        float multiplier = 0.3f;
-        float duration = 0;
-
-        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
-        while (duration < JumpCurve.keys[JumpCurve.keys.Length - 1].time)
+        if (!Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y) / 10.0f, 0, GroundMask))
         {
-            //If the jump multiplier isnt maxed out, and the player is holding the jump button
-            if (multiplier < 1 && Input.GetKey(Controls.Instance.Jump))
+            Grounded = false;
+            Jumping = true;
+
+            Animator.Jump();
+
+            StartCoroutine(_JumpPrevent());
+            StartCoroutine(_CoyoteTime());
+
+            float multiplier = 0.3f;
+            float duration = 0;
+
+            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
+            while (duration < JumpCurve.keys[JumpCurve.keys.Length - 1].time)
             {
-                //Increase the multiplier
-                multiplier += Time.deltaTime * 5;
+                //If the jump multiplier isnt maxed out, and the player is holding the jump button
+                if (multiplier < 1 && Input.GetKey(Controls.Instance.Jump))
+                {
+                    //Increase the multiplier
+                    multiplier += Time.deltaTime * 5;
+                }
+
+                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpCurve.Evaluate(duration) * multiplier);
+                duration += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+
+                //Check if the player is right above a ceiling or on the ground
+                if (Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y) / 10.0f, 0, GroundMask))
+                {
+                    duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
+                }
+
+                //Check if the player is on the ground again
+                if (duration > 0.4f && Grounded)
+                {
+                    duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
+                }
             }
 
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpCurve.Evaluate(duration) * multiplier);
-            duration += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-
-            //Check if the player is right above a ceiling or on the ground
-            if (Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y)/10.0f, 0, GroundMask))
-            {
-                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
-            }
-
-            //Check if the player is on the ground again
-            if (duration > 0.4f && Grounded)
-            {
-                duration = JumpCurve.keys[JumpCurve.keys.Length - 1].time;
-            }
+            Jumping = false;
         }
-
-
-        Jumping = false;
     }
 
     /// <summary>

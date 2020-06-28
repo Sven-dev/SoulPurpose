@@ -96,7 +96,7 @@ public class Jumper : MonoBehaviour
     /// <summary>
     /// Checks if the player is grounded every physics-update (0.2 seconds)
     /// </summary>
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!InCoyoteTime)
         {

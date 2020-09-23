@@ -66,7 +66,7 @@ public class CustomAnimator : MonoBehaviour
     }
 
     /// <summary>
-    /// Reverts back to walk/idle animations
+    /// Reverts back to walk/idle animations.
     /// </summary>
     public void Land()
     {
@@ -80,16 +80,23 @@ public class CustomAnimator : MonoBehaviour
         Legs.SetBool("Falling", false);
     }
 
-    public void MeleeAttack()
+    /// <summary>
+    /// Handles the melee attack animation.
+    /// </summary>
+    public void MeleeAttack1()
     {
         Torso.SetTrigger("Melee Attack");
-        Torso.SetBool("Melee Attacking", true);
+    }
+
+    public void MeleeAttack2()
+    {
+        Torso.SetTrigger("Melee Attack 2");
     }
 
     /// <summary>
-    /// Flips the sprite renderer based on the direction the player is looking at
+    /// Flips the player character based on the direction the player is looking at.
     /// </summary>
-    /// <param name="direction"></param>
+    /// <param name="direction">The direction the player is looking at (-1 = left, 1 = right).</param>
     private void SetDirection(int direction)
     {
         switch(direction)

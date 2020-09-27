@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour
 {
-    [SerializeField] private bool Attacking = false;
-    [SerializeField] private bool HasWeapon = true;
-    [SerializeField] private float TimeToThrow = 1f;
-    [SerializeField] private float AttackTime = 0.1f;
+    [Header("Attack type deciding")]
+    [SerializeField] private bool HasWeapon = true;     //Does the player have their weapon
     [SerializeField] private float Cooldown = 1f;
+    [SerializeField] private float TimeToThrow = 1f;    //If the player holds the button for more than this, the attack becomes a throw instead of a melee
     [Space]
+    [Header("Melee attack")]
+    [SerializeField] private float Attacknumber = 1;    //What attack is getting used;
+    [SerializeField] private float AttackTime = 0.1f;   //The amount of time the hitbox is activated
     [SerializeField] private List<GameObject> Hitboxes;
     [Space]
-    [SerializeField] private Mover Mover;
+    [Header("Unity Components")]
+    [SerializeField] private Mover Mover;               
     [SerializeField] private CustomAnimator Animator;
 
     private IEnumerator MeleeCoroutine;
-
     private bool OffCooldown = true;
-
-    /// <summary>
-    /// TO DO: The melee attack never gets reset, so it stays in the first attack animation after the first. cancel out of the coroutine.
-    /// </summary>
-    /*
-    private void Start()
-    {
-        MeleeCoroutine = _MeleeAttack;
-    }
-    */
 
     /// <summary>
     /// Checks if the player is pressing the attack button.
@@ -72,30 +64,39 @@ public class Attacker : MonoBehaviour
     /// <param name="direction">The direction the player is facing.</param>
     private void MeleeAttack(int direction)
     {
-        if (!Attacking)
+        //Select the right attack animation, based on the previous attack used.
+        if (Attacknumber == 1)
         {
             Animator.MeleeAttack1();
+            Attacknumber = 2;
         }
-        else
+        else if (Attacknumber == 2)
         {
             Animator.MeleeAttack2();
+            Attacknumber = 1;
+        }
+
+        //Stop the current attack coroutine to stop the animation from being reset.
+        if (MeleeCoroutine != null)
+        {
+            StopCoroutine(MeleeCoroutine);
         }
 
         if (direction == -1)
         {
-            StartCoroutine(_MeleeAttack(Hitboxes[0]));
+            MeleeCoroutine = _MeleeAttack(Hitboxes[0]);
+            StartCoroutine(MeleeCoroutine);
         }
         else if (direction == 1)
         {
-            StartCoroutine(_MeleeAttack(Hitboxes[1]));
-            //StopCoroutine(_MeleeAttack(Hitboxes[0]));
+            MeleeCoroutine = _MeleeAttack(Hitboxes[1]);
+            StartCoroutine(MeleeCoroutine);
         }
     }
 
     private IEnumerator _MeleeAttack(GameObject Hitbox)
     {
         OffCooldown = false;
-        Attacking = true;
 
         Hitbox.SetActive(true);
         yield return new WaitForSeconds(AttackTime);
@@ -104,9 +105,11 @@ public class Attacker : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         OffCooldown = true;
 
+
         //Set attacking to false a little later, so the player gets a chance to attack again
         yield return new WaitForSeconds(0.4f);
-        Attacking = false;
+
+        Attacknumber = 1;
     }
 
     private void RangedAttack()

@@ -858,6 +858,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasWeapon: 1
+  Attacking: 0
+  Attacknumber: 1
   TimeToThrow: 0.5
   AttackTime: 0.1
   Cooldown: 0.25

@@ -8,11 +8,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D Rigidbody;
-    [SerializeField] private CustomAnimator Animator;
-    [Space][Header("Walking")]
+    [Header("Walking")]
     [SerializeField] private float Speed;  
     [SerializeField] private AnimationCurve SpeedCurve;
+
+    [Header("Unity Components")]
+    [SerializeField] private Rigidbody2D Rigidbody;
+    [SerializeField] private CustomAnimator Animator;
 
     [HideInInspector] public int Direction;
     private IEnumerator Coroutine;

@@ -11,10 +11,10 @@ public class Jumper : MonoBehaviour
     [SerializeField] private Rigidbody2D Rigidbody;
     [SerializeField] private CustomAnimator Animator;
 
-    [Space][Header("Jumping")]
+    [Header("Jumping")]
     [SerializeField] private AnimationCurve JumpCurve;
 
-    [Space][Header("Ground & ceiling detection")]
+    [Header("Ground & ceiling detection")]
     [SerializeField] private Transform Head;
     [SerializeField] private float HeadRadius = 0.1f;
 
@@ -24,20 +24,20 @@ public class Jumper : MonoBehaviour
     [SerializeField] private LayerMask GroundMask;
     private bool Grounded = false;
 
-    [Space][Header("CoyoteTime")]
+    [Header("CoyoteTime")]
     [SerializeField] private float AirTime = 0.15f;
 
-    [Space][Header("JumpReminder")]
+    [Header("JumpReminder")]
     [SerializeField][Tooltip("Allows the player to jump after they pressed the button")]
     private float RemindTime = 0.1f;
 
     private bool InCoyoteTime = false;
     private bool Jumping = false;
     private bool JumpPrevented = false;
-    private bool JustJumped = false;
-    private bool GroundCheckable = true;
+    private bool LongPressing = false;
     private bool Hanging = false;
     private bool Falling = false;
+    private bool JustJumped = false;
 
     /// <summary>
     /// Check the controls
@@ -54,42 +54,15 @@ public class Jumper : MonoBehaviour
             }
             else
             {
-                //Start a jump timer
-                StartCoroutine(_JustJumped());
+                //Start a longpress timer
+                StartCoroutine(_Longpress());
             }
         }
 
         //If the player touches the ground when the timer is still going
-        if (JustJumped && Grounded)
+        if (LongPressing && Grounded)
         {
             StartCoroutine(_Jump());
-        }
-
-        //Check if the player is falling
-        if (!Hanging)
-        {
-            float velocity = Rigidbody.velocity.y;
-            if (velocity > -1.5f && velocity < 1.5f)
-            {
-                Animator.Hang();
-                Hanging = true;
-            }
-        }
-        else if (!Falling)
-        {
-            if (Rigidbody.velocity.y < -1.5f)
-            {
-                Animator.Fall();
-                Falling = true;
-            }
-        }
-
-        //Check if the player is landing
-        if (GetGround() == true)
-        {
-            Hanging = false;
-            Falling = false;
-            Animator.Land();
         }
     }
 
@@ -101,10 +74,47 @@ public class Jumper : MonoBehaviour
         if (!InCoyoteTime)
         {
             bool onground = GetGround();
+
+            //If the player just left the ground
             if (Grounded && !onground)
-            {
-                //if the player just left the ground, give them some coyote time
+            {             
+                //give them some coyote time
                 StartCoroutine(_CoyoteTime());
+            }
+            //If the player is in the air
+            else if (!Grounded)
+            {
+                //Check if the player is hanging
+                if (!JustJumped && !Hanging)
+                {
+                    float velocity = Rigidbody.velocity.y;
+                    //print(velocity);
+                    if (velocity > -1.5f && velocity < 1.5f)
+                    {
+                        Animator.Hang();
+                        Hanging = true;
+                    }
+                }
+
+                //Check if the player is falling
+                else if (!JustJumped && !Falling)
+                {
+                    if (Rigidbody.velocity.y < -1.5f)
+                    {
+                        Animator.Fall();
+                        Falling = true;
+                    }
+                }
+
+                //Check if the player just landed
+                if (onground)
+                {
+                    Grounded = onground;
+
+                    Hanging = false;
+                    Falling = false;
+                    Animator.Land();
+                }
             }
             else if (!JumpPrevented)
             {
@@ -131,10 +141,12 @@ public class Jumper : MonoBehaviour
             Grounded = false;
             Jumping = true;
 
-            Animator.Jump();
-
             StartCoroutine(_JumpPrevent());
             StartCoroutine(_CoyoteTime());
+            StartCoroutine(_JustJumped());
+
+            yield return null;
+            Animator.Jump();
 
             float multiplier = 0.3f;
             float duration = 0;
@@ -194,10 +206,20 @@ public class Jumper : MonoBehaviour
     /// <summary>
     /// Allows the player to jump for a little longer after pressing the button
     /// </summary>
+    private IEnumerator _Longpress()
+    {
+        LongPressing = true;
+        yield return new WaitForSeconds(RemindTime);
+        LongPressing = false;
+    }
+
+    /// <summary>
+    /// Gets called when the player jumps, and makes sure the player doesn't land in the same frame.
+    /// </summary>
     private IEnumerator _JustJumped()
     {
         JustJumped = true;
-        yield return new WaitForSeconds(RemindTime);
+        yield return new WaitForFixedUpdate();
         JustJumped = false;
     }
 }

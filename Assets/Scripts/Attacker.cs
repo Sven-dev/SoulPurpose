@@ -8,12 +8,12 @@ public class Attacker : MonoBehaviour
     [SerializeField] private bool HasWeapon = true;     //Does the player have their weapon
     [SerializeField] private float Cooldown = 1f;
     [SerializeField] private float TimeToThrow = 1f;    //If the player holds the button for more than this, the attack becomes a throw instead of a melee
-    [Space]
+
     [Header("Melee attack")]
     [SerializeField] private float Attacknumber = 1;    //What attack is getting used;
     [SerializeField] private float AttackTime = 0.1f;   //The amount of time the hitbox is activated
     [SerializeField] private List<GameObject> Hitboxes;
-    [Space]
+
     [Header("Unity Components")]
     [SerializeField] private Mover Mover;               
     [SerializeField] private CustomAnimator Animator;

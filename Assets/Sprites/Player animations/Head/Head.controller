@@ -156,6 +156,58 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-7977431500538566394
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack Up Right 2
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: ce23677310e274b4ab8edf39d0f99daf, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-7950797334500478189
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack Up Right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: d33bc22483f6e7248902df126062f3a6, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &-7815603248299076390
 AnimatorStateMachine:
   serializedVersion: 5
@@ -219,6 +271,15 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -4288914123135251975}
     m_Position: {x: 800, y: 0, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -3406660309766985897}
+    m_Position: {x: 835, y: 65, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -7950797334500478189}
+    m_Position: {x: 870, y: 130, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -7977431500538566394}
+    m_Position: {x: 905, y: 195, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -2673127168640300720}
@@ -615,6 +676,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-3406660309766985897
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack Up Left 2
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: efa1c4afac766c546b1eb1452ddfa046, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-3070464116767642814
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -630,7 +717,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Look direction
+    m_ConditionEvent: Look Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4218884923800919026}
@@ -742,7 +829,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Look direction
+    m_ConditionEvent: Look Direction
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -529209373584756724}
@@ -1115,7 +1202,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Look direction
+  - m_Name: Look Direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1196,7 +1283,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Look direction
+    m_ConditionEvent: Look Direction
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 365833082976157413}
@@ -1227,7 +1314,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Look direction
+    m_ConditionEvent: Look Direction
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5124268290893524474}
@@ -1517,7 +1604,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Look direction
+    m_ConditionEvent: Look Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2255760214422425994}
@@ -1816,7 +1903,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Look direction
+    m_ConditionEvent: Look Direction
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4288914123135251975}

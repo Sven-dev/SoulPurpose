@@ -136,21 +136,24 @@ public class CustomAnimator : MonoBehaviour
     public void LookUp()
     {
         Lookangle = "Up";
-        Head.SetInteger("Look direction", 1);
+        Head.SetInteger("Look Direction", 1);
+        Torso.SetInteger("Look Direction", 1);
         UpdateHeadAngle();
     }
 
     public void LookDown()
     {
         Lookangle = "Down";
-        Head.SetInteger("Look direction", -1);
+        Head.SetInteger("Look Direction", -1);
+        Torso.SetInteger("Look Direction", -1);
         UpdateHeadAngle();
     }
 
     public void LookForward()
     {
         Lookangle = "Forward";
-        Head.SetInteger("Look direction", 0);
+        Head.SetInteger("Look Direction", 0);
+        Torso.SetInteger("Look Direction", 0);
         UpdateHeadAngle();
     }
 
@@ -170,6 +173,8 @@ public class CustomAnimator : MonoBehaviour
             case 1:
                 Direction = "Right";
 
+                HeadRenderer.sortingOrder = 3;
+                LegsRenderer.sortingOrder = 3;
                 Head.SetBool("Facing Right", true);
                 Torso.SetBool("Facing Right", true);
                 LegsRenderer.flipX = false;
@@ -178,6 +183,8 @@ public class CustomAnimator : MonoBehaviour
             case -1:
                 Direction = "Left";
 
+                HeadRenderer.sortingOrder = 1;
+                LegsRenderer.sortingOrder = 1;
                 Head.SetBool("Facing Right", false);
                 Torso.SetBool("Facing Right", false);
                 LegsRenderer.flipX = true;
@@ -212,7 +219,7 @@ public class CustomAnimator : MonoBehaviour
         float progress = 0;
         while (progress < 1)
         {
-            transform.localScale = Vector3.Slerp(Vector3.one, squishVector, progress);
+            transform.localScale = Vector3.Lerp(Vector3.one, squishVector, progress);
             progress += (1 / length * Time.deltaTime) * 2;
             yield return null;
         }
@@ -220,7 +227,7 @@ public class CustomAnimator : MonoBehaviour
         progress = 0;
         while (progress < 1)
         {
-            transform.localScale = Vector3.Slerp(squishVector, Vector3.one, progress);
+            transform.localScale = Vector3.Lerp(squishVector, Vector3.one, progress);
             progress += (1 / length * Time.deltaTime) * 2;
             yield return null;
         }

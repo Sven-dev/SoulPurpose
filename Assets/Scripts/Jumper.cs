@@ -81,14 +81,16 @@ public class Jumper : MonoBehaviour
                 //give them some coyote time
                 StartCoroutine(_CoyoteTime());
             }
+
             //If the player is in the air
             else if (!Grounded)
             {
                 //Check if the player is hanging
                 if (!JustJumped && !Hanging)
                 {
+                    print("Hanging");
+
                     float velocity = Rigidbody.velocity.y;
-                    //print(velocity);
                     if (velocity > -1.5f && velocity < 1.5f)
                     {
                         Animator.Hang();
@@ -97,8 +99,10 @@ public class Jumper : MonoBehaviour
                 }
 
                 //Check if the player is falling
-                else if (!JustJumped && !Falling)
+                if (!JustJumped && !Falling)
                 {
+                    print("falling");
+                    print(Rigidbody.velocity.y);
                     if (Rigidbody.velocity.y < -1.5f)
                     {
                         Animator.Fall();

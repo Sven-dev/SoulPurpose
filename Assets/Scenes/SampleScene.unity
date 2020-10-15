@@ -4096,10 +4096,10 @@ MonoBehaviour:
   TorsoRenderer: {fileID: 1986255641}
   LegsRenderer: {fileID: 182604556}
   Mover: {fileID: 1225295816}
-  JumpAmount: 1
-  JumpTime: 0.5
-  LandAmount: 0.5
-  LandTime: 0.1
+  JumpAmount: 0.25
+  JumpTime: 0.15
+  LandAmount: 0.2
+  LandTime: 0.075
 --- !u!1 &1867078691
 GameObject:
   m_ObjectHideFlags: 0

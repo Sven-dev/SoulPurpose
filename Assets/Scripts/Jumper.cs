@@ -88,8 +88,6 @@ public class Jumper : MonoBehaviour
                 //Check if the player is hanging
                 if (!JustJumped && !Hanging)
                 {
-                    print("Hanging");
-
                     float velocity = Rigidbody.velocity.y;
                     if (velocity > -1.5f && velocity < 1.5f)
                     {
@@ -101,8 +99,6 @@ public class Jumper : MonoBehaviour
                 //Check if the player is falling
                 if (!JustJumped && !Falling)
                 {
-                    print("falling");
-                    print(Rigidbody.velocity.y);
                     if (Rigidbody.velocity.y < -1.5f)
                     {
                         Animator.Fall();

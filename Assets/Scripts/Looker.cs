@@ -6,10 +6,10 @@ public class Looker : MonoBehaviour
 {
     [SerializeField] private CustomAnimator Animator;
 
+    private Vector2 Direction = Vector2.right;
     private IEnumerator Look;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //If the player is trying to look up
         if (Input.GetKeyDown(Controls.Instance.Up))
@@ -23,6 +23,8 @@ public class Looker : MonoBehaviour
             //Start a new look coroutine
             Look = _Look(Controls.Instance.Up);
             StartCoroutine(Look);
+
+            Direction = Vector2.right + Vector2.up;
 
             //play the look animation
             Animator.LookUp();
@@ -39,6 +41,8 @@ public class Looker : MonoBehaviour
             Look = _Look(Controls.Instance.Down);
             StartCoroutine(Look);
 
+            Direction = Vector2.right + Vector2.down;
+
             //play the look animation
             Animator.LookDown();
         }
@@ -52,5 +56,14 @@ public class Looker : MonoBehaviour
         }
 
         Animator.LookForward();
+        Direction = Vector2.right;
+    }
+
+    /// <summary>
+    /// Returns the direction the player is looking in, converted into a Vector2.
+    /// </summary>
+    public Vector2 GetLookDirection()
+    {
+        return Direction;
     }
 }

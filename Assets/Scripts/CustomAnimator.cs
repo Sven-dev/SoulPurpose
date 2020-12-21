@@ -15,12 +15,10 @@ public class CustomAnimator : MonoBehaviour
     [Space]
     [SerializeField] private Mover Mover;
 
-    
-    [Header("Squish", order = 2)]
-    [Header("Jump")]
+    [Header("Jump Squish")]
     [SerializeField] private float JumpAmount;
     [SerializeField] private float JumpTime;
-    [Header("Land")]
+    [Header("Land Squish")]
     [SerializeField] private float LandAmount;
     [SerializeField] private float LandTime;
 
@@ -173,8 +171,6 @@ public class CustomAnimator : MonoBehaviour
             case 1:
                 Direction = "Right";
 
-                HeadRenderer.sortingOrder = 3;
-                LegsRenderer.sortingOrder = 3;
                 Head.SetBool("Facing Right", true);
                 Torso.SetBool("Facing Right", true);
                 LegsRenderer.flipX = false;
@@ -183,8 +179,6 @@ public class CustomAnimator : MonoBehaviour
             case -1:
                 Direction = "Left";
 
-                HeadRenderer.sortingOrder = 1;
-                LegsRenderer.sortingOrder = 1;
                 Head.SetBool("Facing Right", false);
                 Torso.SetBool("Facing Right", false);
                 LegsRenderer.flipX = true;

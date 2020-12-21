@@ -14,8 +14,13 @@ public class Attacker : MonoBehaviour
     [SerializeField] private float AttackTime = 0.1f;   //The amount of time the hitbox is activated
     [SerializeField] private List<GameObject> Hitboxes;
 
+    [Header("Ranged attack")]
+    [SerializeField] private Sword_Projectile SwordPrefab;
+    [SerializeField] private List<Transform> SpawnLocations;
+
     [Header("Unity Components")]
-    [SerializeField] private Mover Mover;               
+    [SerializeField] private Mover Mover;
+    [SerializeField] private Looker Looker;
     [SerializeField] private CustomAnimator Animator;
 
     private IEnumerator MeleeCoroutine;
@@ -114,7 +119,21 @@ public class Attacker : MonoBehaviour
 
     private void RangedAttack()
     {
-        //todo
-        throw new System.Exception("Feature not implemented yet");
+        Transform spawn;
+        Vector2 direction = Looker.GetLookDirection();
+        if (Mover.Direction == -1)
+        {
+            //facing left
+            spawn = SpawnLocations[0];
+            direction.x *= -1;
+        }
+        else //if (Mover.Direction == 1)
+        {
+            //facing right
+            spawn = SpawnLocations[1];
+        }
+
+        Sword_Projectile sword = Instantiate(SwordPrefab, spawn.position, Quaternion.identity);
+        sword.SetDirection(direction);
     }
 }

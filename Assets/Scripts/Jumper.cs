@@ -16,11 +16,9 @@ public class Jumper : MonoBehaviour
 
     [Header("Ground & ceiling detection")]
     [SerializeField] private Transform Head;
-    [SerializeField] private float HeadRadius = 0.1f;
 
     [Space]
     [SerializeField] private Transform Feet;
-    [SerializeField] private float FeetRadius = 0.3f;
     [SerializeField] private LayerMask GroundMask;
     private bool Grounded = false;
 

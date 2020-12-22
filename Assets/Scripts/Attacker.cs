@@ -16,7 +16,7 @@ public class Attacker : MonoBehaviour
 
     [Header("Ranged attack")]
     [SerializeField] private Sword_Projectile SwordPrefab;
-    [SerializeField] private List<Transform> SpawnLocations;
+    [SerializeField] private Transform SwordSpawn;
 
     [Header("Unity Components")]
     [SerializeField] private Mover Mover;
@@ -53,12 +53,10 @@ public class Attacker : MonoBehaviour
         //If the button is held long enough
         if (HeldTime > TimeToThrow)
         {
-            print("Throw");
             RangedAttack();
         }
         else
         {
-            print("Melee");
             MeleeAttack(Mover.Direction);
         }
     }
@@ -119,21 +117,7 @@ public class Attacker : MonoBehaviour
 
     private void RangedAttack()
     {
-        Transform spawn;
-        Vector2 direction = Looker.GetLookDirection();
-        if (Mover.Direction == -1)
-        {
-            //facing left
-            spawn = SpawnLocations[0];
-            direction.x *= -1;
-        }
-        else //if (Mover.Direction == 1)
-        {
-            //facing right
-            spawn = SpawnLocations[1];
-        }
-
-        Sword_Projectile sword = Instantiate(SwordPrefab, spawn.position, Quaternion.identity);
-        sword.SetDirection(direction);
+        Sword_Projectile sword = Instantiate(SwordPrefab, SwordSpawn.position, Quaternion.identity);
+        sword.SetVariables(Mover.Direction);
     }
 }

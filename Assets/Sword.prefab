@@ -483,16 +483,16 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.9986572
       value: 0
-      inSlope: -51.324814
-      outSlope: -51.324814
+      inSlope: -3.8280275
+      outSlope: -3.8280275
       tangentMode: 0
       weightedMode: 3
-      inWeight: 0.08518303
+      inWeight: 0.55067605
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Power: 7
+  Power: 6
   Rigidbody: {fileID: 9129259012730057703}
   Animator: {fileID: 595248317303532298}
   Renderer: {fileID: 9129259012730057696}

@@ -31,7 +31,7 @@ public class Sword_Projectile : MonoBehaviour
 
     private void Start()
     {
-        Invoke("EnableTrigger", 0.5f);
+        Invoke("EnableTrigger", 0.1f);
     }
 
     private void FixedUpdate()

@@ -10,6 +10,7 @@ public class Sword_Projectile : MonoBehaviour
     [SerializeField] private Rigidbody2D Rigidbody;
     [SerializeField] private Animator Animator;
     [SerializeField] private SpriteRenderer Renderer;
+    [SerializeField] private BoxCollider2D Trigger;
 
     [Header("Ground and ceiling detection")]
     [SerializeField] private Transform Groundcheck;
@@ -27,6 +28,11 @@ public class Sword_Projectile : MonoBehaviour
     private int Direction = 1;
     private bool Grounded = false;
     private bool WallCheck = true;
+
+    private void Start()
+    {
+        Invoke("EnableTrigger", 0.5f);
+    }
 
     private void FixedUpdate()
     {
@@ -57,13 +63,13 @@ public class Sword_Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //if it's player
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
             //pick up sword
-            Attacker attacker = collision.gameObject.GetComponent<Attacker>();
+            Attacker attacker = collision.GetComponent<Attacker>();
             attacker.GetWeapon();
             Destroy(gameObject);
         }
@@ -119,6 +125,11 @@ public class Sword_Projectile : MonoBehaviour
         WallCheck = false;
         yield return new WaitForSeconds(2);
         WallCheck = true;
+    }
+
+    private void EnableTrigger()
+    {
+        Trigger.enabled = true;
     }
 
     private void FlipDirection()

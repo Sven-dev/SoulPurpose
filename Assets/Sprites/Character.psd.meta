@@ -208,19 +208,19 @@ TextureImporter:
     second: Character_59
   - first:
       213: 7939121506629780653
-    second: Character_60
+    second: NoSword 1
   - first:
       213: -154006226611386810
-    second: Character_61
+    second: NoSword 5
   - first:
       213: -5638898302856167017
-    second: Character_62
+    second: NoSword 6
   - first:
       213: -5537005245035792594
-    second: Character_63
+    second: NoSword 7
   - first:
       213: -8458992777402084725
-    second: Character_64
+    second: NoSword 8
   - first:
       213: 1956400101269269636
     second: Character_65
@@ -269,6 +269,45 @@ TextureImporter:
   - first:
       213: -1653447138538129410
     second: Character_80
+  - first:
+      213: -5432221704781542480
+    second: NoSword 2
+  - first:
+      213: -6391382366943565630
+    second: NoSword 3
+  - first:
+      213: 3385041077099651042
+    second: NoSword 4
+  - first:
+      213: -9130176367048222217
+    second: NoSword Fall 1
+  - first:
+      213: 1878239564121930211
+    second: NoSword Fall 2
+  - first:
+      213: -3874956643047860162
+    second: NoSword Fall 3
+  - first:
+      213: -2310323184327646335
+    second: NoSword Fall 4
+  - first:
+      213: -2952022455974922517
+    second: NoSword Fall 5
+  - first:
+      213: 8224626952659426761
+    second: NoSword Fall 6
+  - first:
+      213: -8275773659627806777
+    second: NoSword Idle 1
+  - first:
+      213: -5464028042017168334
+    second: NoSword Idle 2
+  - first:
+      213: -1198061302061922658
+    second: NoSword Idle 3
+  - first:
+      213: 4918076124080152371
+    second: NoSword Idle 4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -1629,6 +1668,384 @@ TextureImporter:
       bones: []
       spriteID: 07204fb8378a2e34cb8c6a80a0458f59
       internalID: 2659286222826444281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 10
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d5dfbe8b8d667a42877b5e5cdb51075
+      internalID: 7939121506629780653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 2
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 192
+        width: 8
+        height: 6
+      alignment: 9
+      pivot: {x: 0.375, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42705aafc01ddb04cb9fd4514f06a41a
+      internalID: -5432221704781542480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 3
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 190
+        width: 6
+        height: 8
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abba7297d141d84ea00c27f8ff68da1
+      internalID: -6391382366943565630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 4
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 191
+        width: 8
+        height: 7
+      alignment: 9
+      pivot: {x: 0.375, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77ef58322c1c2f443a66eba32375d701
+      internalID: 3385041077099651042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 8
+        height: 7
+      alignment: 9
+      pivot: {x: 0.625, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2330515b45529e47a3462f17315898f
+      internalID: -154006226611386810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 6
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 181
+        width: 6
+        height: 8
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9501dec0446c2dd46922a64b1fe22e7d
+      internalID: -5638898302856167017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 183
+        width: 8
+        height: 6
+      alignment: 9
+      pivot: {x: 0.625, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfe1bedab3ebdd468a433dc1aa850c4
+      internalID: -5537005245035792594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword 8
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 183
+        width: 10
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870661da358cd384a839178267bff0bd
+      internalID: -8458992777402084725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Fall 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 170
+        width: 6
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4cf8ce976f0d44494ab5a5d80b84ff
+      internalID: -9130176367048222217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Fall 2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 171
+        width: 6
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b7d0585ffdc7be499c917e9546808cf
+      internalID: 1878239564121930211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Fall 3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 171
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede48a67bc81dc34fb1f11468fa6a8ed
+      internalID: -3874956643047860162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Fall 4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 171
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ce17549e62eb745836343043f2f25b
+      internalID: -2310323184327646335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Fall 5
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 171
+        width: 6
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9a161cc4e59f854b940d6cd42397841
+      internalID: -2952022455974922517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Fall 6
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 170
+        width: 6
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77ff9f253c3d08748b3d47a74a3382c2
+      internalID: 8224626952659426761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Idle 1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 191
+        width: 6
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a36a192efb2fa0947aa67a7a3bee9950
+      internalID: -8275773659627806777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Idle 2
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 182
+        width: 6
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f2cb85bdf294241be55892932ec7fc
+      internalID: -5464028042017168334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Idle 3
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 191
+        width: 6
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb63358fa18e7045ab41d00d86b5b70
+      internalID: -1198061302061922658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoSword Idle 4
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 182
+        width: 6
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f622c49894dc84f9160cea08e31e42
+      internalID: 4918076124080152371
       vertices: []
       indices: 
       edges: []

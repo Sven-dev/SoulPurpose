@@ -155,6 +155,18 @@ public class CustomAnimator : MonoBehaviour
         UpdateHeadAngle();
     }
 
+    public void LoseSword()
+    {
+        Torso.SetTrigger("Lose Sword");
+        Torso.SetBool("Armed", false);
+    }
+
+    public void GetSword()
+    {
+        Torso.SetTrigger("Get Sword");
+        Torso.SetBool("Armed", true);
+    }
+
     private void UpdateHeadAngle()
     {
         Head.Play(Lookangle + " " + Direction + " " + Action, 0, Head.GetCurrentAnimatorStateInfo(0).normalizedTime);

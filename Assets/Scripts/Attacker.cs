@@ -54,7 +54,8 @@ public class Attacker : MonoBehaviour
         if (HeldTime > TimeToThrow)
         {
             RangedAttack();
-            LoseWeapon();
+            HasWeapon = false;
+            Animator.LoseSword();
         }
         else
         {
@@ -122,13 +123,9 @@ public class Attacker : MonoBehaviour
         sword.SetVariables(Mover.Direction);
     }
 
-    private void LoseWeapon()
-    {
-        HasWeapon = false;
-    }
-
     public void GetWeapon()
     {
         HasWeapon = true;
+        Animator.GetSword();
     }
 }

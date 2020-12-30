@@ -36,11 +36,14 @@ public class Sword_Projectile : MonoBehaviour
             if (Physics2D.OverlapBox(Groundcheck.position, new Vector2(Groundcheck.lossyScale.x, Groundcheck.lossyScale.y) / 10.0f, 0, GroundMask))
             {
                 Grounded = true;
-                Rigidbody.simulated = false;
+
+                //Rigidbody.isKinematic = true;
+                Rigidbody.velocity = Vector2.zero;
+                Rigidbody.angularVelocity = 0;
+
                 Animator.Play("Land");
             }
-
-            if (WallCheck)
+            else if (WallCheck)
             {
                 //if the projectile has hit a wall, make it go into the opposite direction
                 if (Physics2D.OverlapBox(LeftWallcheck.position, new Vector2(LeftWallcheck.lossyScale.x, LeftWallcheck.lossyScale.y) / 10.0f, 0, WallMask)
@@ -54,10 +57,16 @@ public class Sword_Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //if it's player
-        //pick up sword
+        if (collision.gameObject.tag == "Player")
+        {
+            //pick up sword
+            Attacker attacker = collision.gameObject.GetComponent<Attacker>();
+            attacker.GetWeapon();
+            Destroy(gameObject);
+        }
 
         //if it's enemy
         //Damage it
@@ -84,19 +93,22 @@ public class Sword_Projectile : MonoBehaviour
         float progress = 0;
         while (progress < 1)
         {
-            Rigidbody.position += new Vector2(Direction, PowerCurve.Evaluate(progress)) * Power * Time.fixedDeltaTime;
-            progress += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            //If the sword has fallen on the ground, stop the arc
+            if (Grounded)
+            {
+                break;
+            }
 
+            //If the sword hit a ceiling, reduce its arc
             if (Physics2D.OverlapBox(Ceilingcheck.position, new Vector2(Ceilingcheck.lossyScale.x, Ceilingcheck.lossyScale.y) / 10.0f, 0, CeilingMask))
             {
                 progress = PowerCurve.keys[PowerCurve.keys.Length - 2].time;
             }
+
+            Rigidbody.position += new Vector2(Direction, PowerCurve.Evaluate(progress)) * Power * Time.fixedDeltaTime;
+            progress += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
-
-        //Rigidbody.AddRelativeForce(Vector3.right * 1000);
-
-        //Rigidbody.AddForce((Vector3.right) * 125);
     }
 
     /// <summary>

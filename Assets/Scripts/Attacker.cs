@@ -54,6 +54,7 @@ public class Attacker : MonoBehaviour
         if (HeldTime > TimeToThrow)
         {
             RangedAttack();
+            LoseWeapon();
         }
         else
         {
@@ -119,5 +120,15 @@ public class Attacker : MonoBehaviour
     {
         Sword_Projectile sword = Instantiate(SwordPrefab, SwordSpawn.position, Quaternion.identity);
         sword.SetVariables(Mover.Direction);
+    }
+
+    private void LoseWeapon()
+    {
+        HasWeapon = false;
+    }
+
+    public void GetWeapon()
+    {
+        HasWeapon = true;
     }
 }

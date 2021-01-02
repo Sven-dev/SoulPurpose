@@ -5,15 +5,11 @@ using UnityEngine;
 public class CustomAnimator : MonoBehaviour
 {
     [Header("Animators")]
-    [SerializeField] private Animator Head;
     [SerializeField] private Animator Torso;
     [SerializeField] private Animator Legs;
     [Space]
-    [SerializeField] private SpriteRenderer HeadRenderer;
     [SerializeField] private SpriteRenderer TorsoRenderer;
     [SerializeField] private SpriteRenderer LegsRenderer;
-    [Space]
-    [SerializeField] private Mover Mover;
 
     [Header("Jump Squish")]
     [SerializeField] private float JumpAmount;
@@ -43,8 +39,11 @@ public class CustomAnimator : MonoBehaviour
         SetDirection(direction);
         Legs.SetBool("Idle", true);
         Torso.SetBool("Walking", false);
+    }
 
-        Head.SetInteger("Action", 0);
+    private void Update()
+    {
+        print(TorsoRenderer.sprite.rect);
     }
 
     /// <summary>
@@ -58,8 +57,6 @@ public class CustomAnimator : MonoBehaviour
         SetDirection(direction);
         Legs.SetBool("Idle", false);
         Torso.SetBool("Walking", true);
-
-        Head.SetInteger("Action", 1);
     }
 
     /// <summary>
@@ -76,7 +73,6 @@ public class CustomAnimator : MonoBehaviour
 
         if (!Torso.GetBool("Melee Attacking"))
         {
-            Head.SetTrigger("Jump");
             Torso.SetTrigger("Jump");
             Legs.SetTrigger("Jump");
         }
@@ -87,14 +83,12 @@ public class CustomAnimator : MonoBehaviour
     /// </summary>
     public void Hang()
     {
-        Head.SetTrigger("Jump");
         Torso.SetBool("Hanging", true);
         Legs.SetBool("Hanging", true);
     }
 
     public void Fall()
     {
-        Head.SetTrigger("Jump");
         Torso.SetBool("Falling", true);
         Legs.SetBool("Falling", true);
     }
@@ -114,8 +108,6 @@ public class CustomAnimator : MonoBehaviour
 
         Torso.SetBool("Falling", false);
         Legs.SetBool("Falling", false);
-
-        Head.SetTrigger("Land");
     }
 
     /// <summary>
@@ -131,45 +123,41 @@ public class CustomAnimator : MonoBehaviour
         Torso.SetTrigger("Melee Attack 2");
     }
 
+    public void RangedCharge()
+    {
+        Torso.SetBool("Ranged Attacking", true);
+        Torso.SetTrigger("Ranged Charge");
+    }
+
     public void LookUp()
     {
         Lookangle = "Up";
-        Head.SetInteger("Look Direction", 1);
         Torso.SetInteger("Look Direction", 1);
-        UpdateHeadAngle();
     }
 
     public void LookDown()
     {
         Lookangle = "Down";
-        Head.SetInteger("Look Direction", -1);
         Torso.SetInteger("Look Direction", -1);
-        UpdateHeadAngle();
     }
 
     public void LookForward()
     {
         Lookangle = "Forward";
-        Head.SetInteger("Look Direction", 0);
         Torso.SetInteger("Look Direction", 0);
-        UpdateHeadAngle();
     }
 
     public void LoseSword()
     {
         Torso.SetTrigger("Lose Sword");
         Torso.SetBool("Armed", false);
+        Torso.SetBool("Ranged Attacking", false);
     }
 
     public void GetSword()
     {
         Torso.SetTrigger("Get Sword");
         Torso.SetBool("Armed", true);
-    }
-
-    private void UpdateHeadAngle()
-    {
-        Head.Play(Lookangle + " " + Direction + " " + Action, 0, Head.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
 
     /// <summary>
@@ -182,16 +170,12 @@ public class CustomAnimator : MonoBehaviour
         {
             case 1:
                 Direction = "Right";
-
-                Head.SetBool("Facing Right", true);
                 Torso.SetBool("Facing Right", true);
                 LegsRenderer.flipX = false;
 
                 break;
             case -1:
                 Direction = "Left";
-
-                Head.SetBool("Facing Right", false);
                 Torso.SetBool("Facing Right", false);
                 LegsRenderer.flipX = true;
 

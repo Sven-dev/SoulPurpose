@@ -7,7 +7,6 @@ public class Attacker : MonoBehaviour
     [Header("Attack type deciding")]
     [SerializeField] private bool HasWeapon = true;     //Does the player have their weapon
     [SerializeField] private float Cooldown = 1f;
-    [SerializeField] private float TimeToThrow = 1f;    //If the player holds the button for more than this, the attack becomes a throw instead of a melee
 
     [Header("Melee attack")]
     [SerializeField] private float Attacknumber = 1;    //What attack is getting used;
@@ -31,9 +30,16 @@ public class Attacker : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (Input.GetKeyDown(Controls.Instance.Attack) && HasWeapon && OffCooldown)
+        if (HasWeapon && OffCooldown)
         {
-            StartCoroutine(_CheckButton());
+            if (Input.GetKeyDown(Controls.Instance.MeleeAttack))
+            {
+                MeleeAttack(Mover.Direction);
+            }
+            else if (Input.GetKeyDown(Controls.Instance.RangedAttack))
+            {
+                StartCoroutine(_CheckButton());
+            }
         }
     }
 
@@ -42,25 +48,18 @@ public class Attacker : MonoBehaviour
     /// </summary>
     private IEnumerator _CheckButton()
     {
+        //play sword hold animation
+        Animator.RangedCharge();
+
         //Check how long the button is held
-        float HeldTime = 0;
-        while(Input.GetKey(Controls.Instance.Attack))
+        while(Input.GetKey(Controls.Instance.RangedAttack))
         {
-            HeldTime += Time.deltaTime;
             yield return null;
         }
 
-        //If the button is held long enough
-        if (HeldTime > TimeToThrow)
-        {
-            RangedAttack();
-            HasWeapon = false;
-            Animator.LoseSword();
-        }
-        else
-        {
-            MeleeAttack(Mover.Direction);
-        }
+        RangedAttack();
+        HasWeapon = false;
+        Animator.LoseSword();
     }
 
     /// <summary>
@@ -109,7 +108,6 @@ public class Attacker : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         OffCooldown = true;
-
 
         //Set attacking to false a little later, so the player gets a chance to attack again
         yield return new WaitForSeconds(0.4f);

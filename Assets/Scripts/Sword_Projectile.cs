@@ -25,6 +25,9 @@ public class Sword_Projectile : MonoBehaviour
     [SerializeField] private Transform RightWallcheck;
     [SerializeField] private LayerMask WallMask;
 
+    [Space]
+    [SerializeField] private int Damage = 1;
+
     private int Direction = 1;
     private bool Grounded = false;
     private bool WallCheck = true;
@@ -75,7 +78,12 @@ public class Sword_Projectile : MonoBehaviour
         }
 
         //if it's enemy
-        //Damage it
+        if (collision.tag == "Enemy")
+        {
+            //Damage it
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.TakeDamage(Damage);
+        }
     }
 
     /// <summary>
@@ -96,6 +104,8 @@ public class Sword_Projectile : MonoBehaviour
 
     private IEnumerator _Arc()
     {
+        bool ceilinghit = false;
+
         float progress = 0;
         while (progress < 1)
         {
@@ -109,10 +119,16 @@ public class Sword_Projectile : MonoBehaviour
             if (Physics2D.OverlapBox(Ceilingcheck.position, new Vector2(Ceilingcheck.lossyScale.x, Ceilingcheck.lossyScale.y) / 10.0f, 0, CeilingMask))
             {
                 progress = PowerCurve.keys[PowerCurve.keys.Length - 2].time;
+                ceilinghit = true;
             }
 
-            Rigidbody.position += new Vector2(Direction, PowerCurve.Evaluate(progress)) * Power * Time.fixedDeltaTime;
-            progress += Time.fixedDeltaTime;
+            if (!ceilinghit)
+            {
+                Rigidbody.position += new Vector2(0, PowerCurve.Evaluate(progress)) * Power * Time.fixedDeltaTime;
+                progress += Time.fixedDeltaTime;
+            }
+
+            Rigidbody.position += new Vector2(Direction, 0) * Power * Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
     }

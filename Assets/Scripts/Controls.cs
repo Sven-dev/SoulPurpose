@@ -10,13 +10,14 @@ public class Controls : MonoBehaviour
     public static Controls Instance;
 
     //walking
-    public KeyCode Left =   KeyCode.A;
-    public KeyCode Right =  KeyCode.D;
-    public KeyCode Up =     KeyCode.W;
-    public KeyCode Down =   KeyCode.S;
+    public KeyCode Left =           KeyCode.A;
+    public KeyCode Right =          KeyCode.D;
+    public KeyCode Up =             KeyCode.W;
+    public KeyCode Down =           KeyCode.S;
 
-    public KeyCode Jump =   KeyCode.RightShift;
-    public KeyCode Attack = KeyCode.RightControl;
+    public KeyCode Jump =           KeyCode.RightShift;
+    public KeyCode MeleeAttack =    KeyCode.Mouse0;
+    public KeyCode RangedAttack =   KeyCode.Mouse1;
 
     /// <summary>
     /// Creates a singleton if it doesn't exist already

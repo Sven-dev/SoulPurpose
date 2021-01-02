@@ -308,6 +308,12 @@ TextureImporter:
   - first:
       213: 4918076124080152371
     second: NoSword Idle 4
+  - first:
+      213: 7939121506629780653
+    second: Sword Ranged Attack 2
+  - first:
+      213: -154006226611386810
+    second: Sword Ranged Attack 1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -395,12 +401,12 @@ TextureImporter:
       name: Character_0
       rect:
         serializedVersion: 2
-        x: 57
-        y: 246
-        width: 14
-        height: 10
+        x: 54
+        y: 242
+        width: 16
+        height: 14
       alignment: 9
-      pivot: {x: 0.21428573, y: 0.1}
+      pivot: {x: 0.3125, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -416,12 +422,12 @@ TextureImporter:
       name: Character_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 234
-        width: 14
-        height: 10
+        x: 51
+        y: 223
+        width: 17
+        height: 14
       alignment: 9
-      pivot: {x: 0.21428573, y: 0.2}
+      pivot: {x: 0.3529412, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -458,7 +464,7 @@ TextureImporter:
       name: Character_7
       rect:
         serializedVersion: 2
-        x: 156
+        x: 187
         y: 252
         width: 10
         height: 4
@@ -479,7 +485,7 @@ TextureImporter:
       name: Character_8
       rect:
         serializedVersion: 2
-        x: 167
+        x: 198
         y: 252
         width: 8
         height: 4
@@ -500,7 +506,7 @@ TextureImporter:
       name: Character_4
       rect:
         serializedVersion: 2
-        x: 156
+        x: 187
         y: 247
         width: 10
         height: 4
@@ -521,7 +527,7 @@ TextureImporter:
       name: Character_11
       rect:
         serializedVersion: 2
-        x: 167
+        x: 198
         y: 247
         width: 8
         height: 4
@@ -542,12 +548,12 @@ TextureImporter:
       name: Character_13
       rect:
         serializedVersion: 2
-        x: 27
-        y: 231
+        x: 28
+        y: 219
         width: 23
-        height: 12
+        height: 18
       alignment: 9
-      pivot: {x: 0.47826087, y: 0.4166667}
+      pivot: {x: 0.47826087, y: 0.2777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -563,12 +569,12 @@ TextureImporter:
       name: Character_14
       rect:
         serializedVersion: 2
-        x: 9
-        y: 231
+        x: 10
+        y: 219
         width: 17
-        height: 12
+        height: 18
       alignment: 9
-      pivot: {x: 0.29411766, y: 0.4166667}
+      pivot: {x: 0.29411766, y: 0.2777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -585,11 +591,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 236
-        width: 8
-        height: 6
+        y: 223
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.625, y: 0}
+      pivot: {x: 0.5555556, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -605,7 +611,7 @@ TextureImporter:
       name: Character_16
       rect:
         serializedVersion: 2
-        x: 145
+        x: 176
         y: 253
         width: 10
         height: 3
@@ -626,7 +632,7 @@ TextureImporter:
       name: Character_17
       rect:
         serializedVersion: 2
-        x: 145
+        x: 176
         y: 248
         width: 10
         height: 3
@@ -647,7 +653,7 @@ TextureImporter:
       name: Character_5
       rect:
         serializedVersion: 2
-        x: 138
+        x: 169
         y: 252
         width: 6
         height: 4
@@ -668,12 +674,12 @@ TextureImporter:
       name: Character_6
       rect:
         serializedVersion: 2
-        x: 13
-        y: 219
+        x: 0
+        y: 204
         width: 11
-        height: 7
+        height: 14
       alignment: 9
-      pivot: {x: 0.54545456, y: 0.14285715}
+      pivot: {x: 0.54545456, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -689,12 +695,12 @@ TextureImporter:
       name: Character_18
       rect:
         serializedVersion: 2
-        x: 26
-        y: 220
-        width: 10
-        height: 6
+        x: 12
+        y: 205
+        width: 12
+        height: 13
       alignment: 9
-      pivot: {x: 0.3, y: -0}
+      pivot: {x: 0.4166667, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -710,12 +716,12 @@ TextureImporter:
       name: Character_19
       rect:
         serializedVersion: 2
-        x: 37
-        y: 218
-        width: 10
-        height: 10
+        x: 25
+        y: 204
+        width: 12
+        height: 14
       alignment: 9
-      pivot: {x: 0.3, y: 0.3}
+      pivot: {x: 0.4166667, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -731,12 +737,12 @@ TextureImporter:
       name: Character_20
       rect:
         serializedVersion: 2
-        x: 47
-        y: 219
-        width: 14
-        height: 11
+        x: 38
+        y: 204
+        width: 15
+        height: 14
       alignment: 9
-      pivot: {x: 0.2857143, y: 0.18181819}
+      pivot: {x: 0.33333334, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -752,12 +758,12 @@ TextureImporter:
       name: Character_9
       rect:
         serializedVersion: 2
-        x: 31
-        y: 202
-        width: 6
-        height: 7
+        x: 20
+        y: 188
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.14285715}
+      pivot: {x: 0.5555556, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -773,10 +779,10 @@ TextureImporter:
       name: Character_10
       rect:
         serializedVersion: 2
-        x: 14
-        y: 203
-        width: 8
-        height: 6
+        x: 10
+        y: 189
+        width: 9
+        height: 13
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -794,7 +800,7 @@ TextureImporter:
       name: Character_12
       rect:
         serializedVersion: 2
-        x: 176
+        x: 207
         y: 250
         width: 7
         height: 6
@@ -815,7 +821,7 @@ TextureImporter:
       name: Character_21
       rect:
         serializedVersion: 2
-        x: 184
+        x: 215
         y: 252
         width: 8
         height: 4
@@ -836,7 +842,7 @@ TextureImporter:
       name: Character_22
       rect:
         serializedVersion: 2
-        x: 193
+        x: 224
         y: 252
         width: 8
         height: 4
@@ -857,12 +863,12 @@ TextureImporter:
       name: Character_23
       rect:
         serializedVersion: 2
-        x: 1
-        y: 203
-        width: 8
-        height: 9
+        x: 0
+        y: 188
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5555556, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -878,7 +884,7 @@ TextureImporter:
       name: Character_24
       rect:
         serializedVersion: 2
-        x: 202
+        x: 233
         y: 252
         width: 7
         height: 4
@@ -899,12 +905,12 @@ TextureImporter:
       name: Character_25
       rect:
         serializedVersion: 2
-        x: 72
-        y: 247
-        width: 13
-        height: 9
+        x: 71
+        y: 243
+        width: 15
+        height: 13
       alignment: 9
-      pivot: {x: 0.7692308, y: 0}
+      pivot: {x: 0.6666667, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -920,12 +926,12 @@ TextureImporter:
       name: Character_26
       rect:
         serializedVersion: 2
-        x: 68
-        y: 235
-        width: 13
-        height: 9
+        x: 69
+        y: 224
+        width: 15
+        height: 13
       alignment: 9
-      pivot: {x: 0.7692308, y: 0.11111111}
+      pivot: {x: 0.6666667, y: 0.07692308}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -941,12 +947,12 @@ TextureImporter:
       name: Character_27
       rect:
         serializedVersion: 2
-        x: 83
-        y: 231
+        x: 85
+        y: 219
         width: 23
-        height: 12
+        height: 18
       alignment: 9
-      pivot: {x: 0.5217391, y: 0.4166667}
+      pivot: {x: 0.5217391, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -962,12 +968,12 @@ TextureImporter:
       name: Character_28
       rect:
         serializedVersion: 2
-        x: 107
-        y: 231
-        width: 19
-        height: 12
+        x: 109
+        y: 219
+        width: 18
+        height: 18
       alignment: 9
-      pivot: {x: 0.6315789, y: 0.4166667}
+      pivot: {x: 0.6666667, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -983,12 +989,12 @@ TextureImporter:
       name: Character_29
       rect:
         serializedVersion: 2
-        x: 127
-        y: 230
+        x: 128
+        y: 219
         width: 10
-        height: 11
+        height: 18
       alignment: 9
-      pivot: {x: 0.3, y: 0.45454547}
+      pivot: {x: 0.4, y: 0.2777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1004,12 +1010,12 @@ TextureImporter:
       name: Character_30
       rect:
         serializedVersion: 2
-        x: 61
-        y: 218
-        width: 11
-        height: 8
+        x: 54
+        y: 203
+        width: 12
+        height: 15
       alignment: 9
-      pivot: {x: 0.6363636, y: 0.25}
+      pivot: {x: 0.5833334, y: 0.13333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1025,12 +1031,12 @@ TextureImporter:
       name: Character_31
       rect:
         serializedVersion: 2
-        x: 73
-        y: 218
-        width: 13
-        height: 8
+        x: 67
+        y: 203
+        width: 14
+        height: 15
       alignment: 9
-      pivot: {x: 0.6923077, y: 0.25}
+      pivot: {x: 0.6428572, y: 0.13333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1046,12 +1052,12 @@ TextureImporter:
       name: Character_32
       rect:
         serializedVersion: 2
-        x: 86
-        y: 220
-        width: 11
-        height: 8
+        x: 82
+        y: 205
+        width: 13
+        height: 13
       alignment: 9
-      pivot: {x: 0.72727275, y: 0.125}
+      pivot: {x: 0.61538464, y: 0.07692308}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1067,12 +1073,12 @@ TextureImporter:
       name: Character_33
       rect:
         serializedVersion: 2
-        x: 98
-        y: 221
-        width: 13
-        height: 9
+        x: 96
+        y: 205
+        width: 15
+        height: 13
       alignment: 9
-      pivot: {x: 0.7692308, y: 0}
+      pivot: {x: 0.6666667, y: 0.07692308}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1088,12 +1094,12 @@ TextureImporter:
       name: Character_35
       rect:
         serializedVersion: 2
-        x: 56
-        y: 199
-        width: 6
-        height: 10
+        x: 30
+        y: 185
+        width: 9
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.44444445, y: 0.23529412}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1109,12 +1115,12 @@ TextureImporter:
       name: Character_38
       rect:
         serializedVersion: 2
-        x: 31
-        y: 244
+        x: 30
+        y: 238
         width: 23
-        height: 12
+        height: 18
       alignment: 9
-      pivot: {x: 0.47826087, y: 0.5}
+      pivot: {x: 0.47826087, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1131,11 +1137,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 244
-        width: 19
-        height: 12
+        y: 238
+        width: 18
+        height: 18
       alignment: 9
-      pivot: {x: 0.36842105, y: 0.5}
+      pivot: {x: 0.33333334, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1152,11 +1158,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 244
-        width: 11
-        height: 11
+        y: 238
+        width: 10
+        height: 18
       alignment: 9
-      pivot: {x: 0.6363636, y: 0.54545456}
+      pivot: {x: 0.6, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1173,11 +1179,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 87
-        y: 244
+        y: 238
         width: 23
-        height: 12
+        height: 18
       alignment: 9
-      pivot: {x: 0.5217391, y: 0.5}
+      pivot: {x: 0.5217391, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1194,11 +1200,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 111
-        y: 244
+        y: 238
         width: 17
-        height: 12
+        height: 18
       alignment: 9
-      pivot: {x: 0.7058824, y: 0.5}
+      pivot: {x: 0.7058824, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1215,11 +1221,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 249
-        width: 8
-        height: 7
+        y: 242
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.375, y: 0.14285715}
+      pivot: {x: 0.44444445, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1232,262 +1238,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_44
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 237
-        width: 9
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5555556, y: 0.11111111}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1883c978495b8e4d9d8f2678300b679
-      internalID: 5997594283234826320
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_45
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 237
-        width: 9
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5555556, y: 0.11111111}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4986f54d39ad3a744aebc3f7ba2a5a2d
-      internalID: -8159883496149072352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_46
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 237
-        width: 9
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5555556, y: 0.11111111}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: beddfad6ebf0efe4e8e55aba86c771b5
-      internalID: 82426061317422427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_47
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 224
-        width: 9
-        height: 12
-      alignment: 9
-      pivot: {x: 0.44444445, y: 0.33333334}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ced44e842bf791e4b8cb708501f99491
-      internalID: -6694658725094661539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_48
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 224
-        width: 9
-        height: 12
-      alignment: 9
-      pivot: {x: 0.44444445, y: 0.33333334}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fe24546e115d9641a37a948af734d96
-      internalID: -9137712581799548032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_49
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 9
-        height: 12
-      alignment: 9
-      pivot: {x: 0.44444445, y: 0.33333334}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5f9d52845985e84287b0f30f456afdf
-      internalID: -1307106858290793205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_50
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 237
-        width: 9
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5555556, y: 0.22222222}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 287c4d5abdeadd94baa61132838c30cd
-      internalID: 4695645784227870110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_51
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 237
-        width: 9
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5555556, y: 0.22222222}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b29c3bb488a93a4698db762499f1b0e
-      internalID: -4940984025561564272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_52
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 237
-        width: 9
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5555556, y: 0.22222222}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c71eeca6342b6b54c99d6698b23ff39a
-      internalID: 5087130816270920412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_53
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 224
-        width: 9
-        height: 12
-      alignment: 9
-      pivot: {x: 0.44444445, y: 0.4166667}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c39db86a5808da47a41e966ebf387de
-      internalID: 592665941263346177
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_54
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 224
-        width: 9
-        height: 12
-      alignment: 9
-      pivot: {x: 0.44444445, y: 0.4166667}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 711e89811b46c904fb7d78f1606d905a
-      internalID: 8202781100932666147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_55
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 9
-        height: 12
-      alignment: 9
-      pivot: {x: 0.44444445, y: 0.4166667}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c71bcd6565d88e4c96a1b9c1aaf3f56
-      internalID: -7157023754435722467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Character_78
       rect:
         serializedVersion: 2
-        x: 194
+        x: 221
         y: 223
         width: 9
         height: 9
@@ -1508,7 +1262,7 @@ TextureImporter:
       name: Character_2
       rect:
         serializedVersion: 2
-        x: 170
+        x: 197
         y: 235
         width: 11
         height: 11
@@ -1529,7 +1283,7 @@ TextureImporter:
       name: Character_34
       rect:
         serializedVersion: 2
-        x: 170
+        x: 197
         y: 223
         width: 11
         height: 11
@@ -1550,7 +1304,7 @@ TextureImporter:
       name: Character_56
       rect:
         serializedVersion: 2
-        x: 182
+        x: 209
         y: 235
         width: 11
         height: 11
@@ -1571,7 +1325,7 @@ TextureImporter:
       name: Character_57
       rect:
         serializedVersion: 2
-        x: 182
+        x: 209
         y: 223
         width: 11
         height: 11
@@ -1592,7 +1346,7 @@ TextureImporter:
       name: Character_58
       rect:
         serializedVersion: 2
-        x: 194
+        x: 221
         y: 235
         width: 13
         height: 11
@@ -1610,36 +1364,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_59
-      rect:
-        serializedVersion: 2
-        x: 246
-        y: 255
-        width: 1
-        height: 1
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0305aebca9de0534fa9be2c5d12049d8
-      internalID: 926094217002892508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Character_36
       rect:
         serializedVersion: 2
-        x: 71
-        y: 203
-        width: 8
-        height: 6
+        x: 40
+        y: 189
+        width: 9
+        height: 13
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.44444445, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1655,10 +1388,10 @@ TextureImporter:
       name: Character_37
       rect:
         serializedVersion: 2
-        x: 86
-        y: 203
-        width: 8
-        height: 13
+        x: 49
+        y: 188
+        width: 10
+        height: 14
       alignment: 9
       pivot: {x: 0.5, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1677,9 +1410,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 171
         width: 10
-        height: 6
+        height: 13
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1698,11 +1431,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 192
-        width: 8
-        height: 6
+        y: 171
+        width: 10
+        height: 13
       alignment: 9
-      pivot: {x: 0.375, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1718,12 +1451,12 @@ TextureImporter:
       name: NoSword 3
       rect:
         serializedVersion: 2
-        x: 20
-        y: 191
-        width: 7
-        height: 7
+        x: 22
+        y: 170
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.42857146, y: 0.2857143}
+      pivot: {x: 0.5555556, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1739,12 +1472,12 @@ TextureImporter:
       name: NoSword 4
       rect:
         serializedVersion: 2
-        x: 28
-        y: 191
-        width: 9
-        height: 7
+        x: 32
+        y: 170
+        width: 10
+        height: 14
       alignment: 9
-      pivot: {x: 0.44444445, y: 0.2857143}
+      pivot: {x: 0.5, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1761,11 +1494,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 182
-        width: 9
-        height: 7
+        y: 155
+        width: 10
+        height: 14
       alignment: 9
-      pivot: {x: 0.5555556, y: 0.14285715}
+      pivot: {x: 0.5, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1781,12 +1514,12 @@ TextureImporter:
       name: NoSword 6
       rect:
         serializedVersion: 2
-        x: 10
-        y: 182
-        width: 7
-        height: 7
+        x: 11
+        y: 155
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5714286, y: 0.14285715}
+      pivot: {x: 0.44444445, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1802,12 +1535,12 @@ TextureImporter:
       name: NoSword 7
       rect:
         serializedVersion: 2
-        x: 18
-        y: 183
-        width: 8
-        height: 6
+        x: 21
+        y: 156
+        width: 10
+        height: 13
       alignment: 9
-      pivot: {x: 0.625, y: 0.16666667}
+      pivot: {x: 0.5, y: 0.07692308}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1823,12 +1556,12 @@ TextureImporter:
       name: NoSword 8
       rect:
         serializedVersion: 2
-        x: 27
-        y: 183
+        x: 32
+        y: 156
         width: 10
-        height: 6
+        height: 13
       alignment: 9
-      pivot: {x: 0.5, y: 0.16666667}
+      pivot: {x: 0.5, y: 0.07692308}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1845,11 +1578,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 170
-        width: 6
-        height: 7
+        y: 140
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.14285715}
+      pivot: {x: 0.5555556, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1865,12 +1598,12 @@ TextureImporter:
       name: NoSword Fall 2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 171
-        width: 8
-        height: 6
+        x: 10
+        y: 141
+        width: 9
+        height: 13
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5555556, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1886,12 +1619,12 @@ TextureImporter:
       name: NoSword Fall 3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 171
-        width: 8
-        height: 10
+        x: 21
+        y: 140
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5555556, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1907,12 +1640,12 @@ TextureImporter:
       name: NoSword Fall 4
       rect:
         serializedVersion: 2
-        x: 25
-        y: 171
-        width: 8
-        height: 10
+        x: 33
+        y: 140
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.44444445, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1928,12 +1661,12 @@ TextureImporter:
       name: NoSword Fall 5
       rect:
         serializedVersion: 2
-        x: 34
-        y: 171
-        width: 8
-        height: 6
+        x: 43
+        y: 141
+        width: 9
+        height: 13
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.44444445, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1949,12 +1682,12 @@ TextureImporter:
       name: NoSword Fall 6
       rect:
         serializedVersion: 2
-        x: 43
-        y: 170
-        width: 6
-        height: 7
+        x: 54
+        y: 140
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.14285715}
+      pivot: {x: 0.44444445, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1970,12 +1703,12 @@ TextureImporter:
       name: NoSword Idle 1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 191
-        width: 6
-        height: 7
+        x: 43
+        y: 170
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.14285715}
+      pivot: {x: 0.5555556, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1991,12 +1724,12 @@ TextureImporter:
       name: NoSword Idle 2
       rect:
         serializedVersion: 2
-        x: 38
-        y: 182
-        width: 6
-        height: 7
+        x: 43
+        y: 155
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.2857143}
+      pivot: {x: 0.5555556, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2012,12 +1745,12 @@ TextureImporter:
       name: NoSword Idle 3
       rect:
         serializedVersion: 2
-        x: 45
-        y: 191
-        width: 6
-        height: 7
+        x: 53
+        y: 170
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.14285715}
+      pivot: {x: 0.44444445, y: 0.071428575}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2033,12 +1766,12 @@ TextureImporter:
       name: NoSword Idle 4
       rect:
         serializedVersion: 2
-        x: 45
-        y: 182
-        width: 6
-        height: 7
+        x: 53
+        y: 155
+        width: 9
+        height: 14
       alignment: 9
-      pivot: {x: 0.5, y: 0.2857143}
+      pivot: {x: 0.44444445, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2046,6 +1779,48 @@ TextureImporter:
       bones: []
       spriteID: 11f622c49894dc84f9160cea08e31e42
       internalID: 4918076124080152371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sword Ranged Attack 2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 155
+        width: 18
+        height: 13
+      alignment: 9
+      pivot: {x: 0.6111111, y: 0.07692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1606471cd62345d44b92101fba1d2313
+      internalID: 7939121506629780653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sword Ranged Attack 1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 170
+        width: 18
+        height: 13
+      alignment: 9
+      pivot: {x: 0.3888889, y: 0.07692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6554422dec51a1489d6eca13e3e543c
+      internalID: -154006226611386810
       vertices: []
       indices: 
       edges: []

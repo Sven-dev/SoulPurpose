@@ -9,15 +9,23 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [Header("Walking")]
-    [SerializeField] private float Speed;  
+    [SerializeField] private float Speed;
     [SerializeField] private AnimationCurve SpeedCurve;
 
     [Header("Unity Components")]
     [SerializeField] private Rigidbody2D Rigidbody;
     [SerializeField] private CustomAnimator Animator;
 
-    [HideInInspector] public int Direction;
+    [HideInInspector] public int Direction = 1;
+    [HideInInspector] public bool Moving = true;
+
+    [SerializeField]private float Momentum = 0;
     private IEnumerator Coroutine;
+
+    private void Start()
+    {
+        StartCoroutine(_Walk());
+    }
 
     public bool Walking
     {
@@ -32,31 +40,99 @@ public class Mover : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Check the controls
-    /// </summary>
-    private void Update()
+    private IEnumerator _Walk()
     {
-        //If the player is pressing the right button
-        if (Input.GetKeyDown(Controls.Instance.Right))
+        while (true)
         {
-            //Move right
-            StartMove(Controls.Instance.Right, 1);
-        }
-        //If the player is pressing the left button
-        else if (Input.GetKeyDown(Controls.Instance.Left))
-        {
-            //Move left
-            StartMove(Controls.Instance.Left, -1);
+            //If the player is pressing the right button
+            if (Input.GetKey(Controls.Instance.Right))
+            {
+                if (Momentum < 0)
+                {
+                    Momentum = 0;
+                }
+
+                if (Momentum < 1)
+                {
+                    Momentum += 5 * Time.deltaTime;
+                }
+
+                //Move right
+                StartMove(Controls.Instance.Right, 1);
+                Animator.Walk(1);
+            }
+            //If the player is pressing the left button
+            else if (Input.GetKey(Controls.Instance.Left))
+            {
+                if (Momentum > 0)
+                {
+                    Momentum = 0;
+                }
+
+                if (Momentum > -1)
+                {
+                    Momentum -= 5 * Time.deltaTime;
+                }
+                Animator.Walk(-1);
+
+                //Move left
+                StartMove(Controls.Instance.Left, -1);
+            }
+            //If the player isn't pressing anything
+            else
+            {
+                //slowly decrease momentum back to 0
+                if (Momentum > 0.025f)
+                {
+                    Momentum -= 10 * Time.deltaTime;
+                }
+                else if (Momentum < -0.025f)
+                {
+                    Momentum += 10 * Time.deltaTime;
+                }
+                else
+                {
+                    Momentum = 0;
+                }
+            }
+
+            if (Moving)
+            {
+                Rigidbody.velocity = new Vector2(Speed * SpeedCurve.Evaluate(Momentum), Rigidbody.velocity.y);
+            }
+
+            yield return null;
         }
     }
 
-    /// <summary>
-    /// Starts the _Move() coroutine
-    /// </summary>
-    /// <param name="key">The key that's pressed</param>
-    /// <param name="direction">The direction the object is moving in</param>
-    private void StartMove(KeyCode key, int direction)
+        /// <summary>
+        /// Check the controls
+        /// </summary>
+        private void Update()
+        {       
+        /*
+            //If the player is pressing the right button
+            if (Input.GetKeyDown(Controls.Instance.Right))
+            {
+                //Move right
+                StartMove(Controls.Instance.Right, 1);
+            }
+            //If the player is pressing the left button
+            else if (Input.GetKeyDown(Controls.Instance.Left))
+            {
+                //Move left
+                StartMove(Controls.Instance.Left, -1);
+            }
+        */
+        }
+
+
+        /// <summary>
+        /// Starts the _Move() coroutine
+        /// </summary>
+        /// <param name="key">The key that's pressed</param>
+        /// <param name="direction">The direction the object is moving in</param>
+        private void StartMove(KeyCode key, int direction)
     {
         if (Coroutine != null)
         {
@@ -81,16 +157,19 @@ public class Mover : MonoBehaviour
         float momentum = 0;
         while (Input.GetKey(key) && momentum < 10)
         {
-            if (momentum < SpeedCurve.keys[1].time)
+            if (Moving)
             {
-                //Speed the player up
-                Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(momentum)), Rigidbody.velocity.y);
-                momentum += Time.fixedDeltaTime;
-            }
-            else
-            {
-                //Player moves at max speed
-                Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(0.5f)), Rigidbody.velocity.y);
+                if (momentum < SpeedCurve.keys[1].time)
+                {
+                    //Speed the player up
+                    Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(momentum)), Rigidbody.velocity.y);
+                    momentum += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    //Player moves at max speed
+                    Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(0.5f)), Rigidbody.velocity.y);
+                }
             }
 
             yield return new WaitForFixedUpdate();
@@ -100,10 +179,13 @@ public class Mover : MonoBehaviour
         momentum = SpeedCurve.keys[SpeedCurve.keys.Length - 1].time;
         while (momentum < 1)
         {
-            //Slow the player down
-            Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(momentum)), Rigidbody.velocity.y);
-            momentum += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            if (Moving)
+            {
+                //Slow the player down
+                Rigidbody.velocity = new Vector2(direction * (Speed * SpeedCurve.Evaluate(momentum)), Rigidbody.velocity.y);
+                momentum += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
         }
 
         //Make the player stand still completely (negates sliding of the rigidbody)

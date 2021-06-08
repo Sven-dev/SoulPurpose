@@ -41,11 +41,6 @@ public class CustomAnimator : MonoBehaviour
         Torso.SetBool("Walking", false);
     }
 
-    private void Update()
-    {
-        print(TorsoRenderer.sprite.rect);
-    }
-
     /// <summary>
     /// Plays walk animations
     /// </summary>
@@ -79,12 +74,11 @@ public class CustomAnimator : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets called when the player is hanging in mid-air
+    /// Gets called when the player is hanging onto objects
     /// </summary>
     public void Hang()
     {
-        Torso.SetBool("Hanging", true);
-        Legs.SetBool("Hanging", true);
+        Torso.SetTrigger("Hang");
     }
 
     public void Fall()
@@ -104,7 +98,6 @@ public class CustomAnimator : MonoBehaviour
         Legs.SetBool("Jumping", false);
 
         Torso.SetBool("Hanging", false);
-        Legs.SetBool("Hanging", false);
 
         Torso.SetBool("Falling", false);
         Legs.SetBool("Falling", false);
@@ -123,10 +116,15 @@ public class CustomAnimator : MonoBehaviour
         Torso.SetTrigger("Melee Attack 2");
     }
 
-    public void RangedCharge()
+    public void StartCharge()
     {
-        Torso.SetBool("Ranged Attacking", true);
-        Torso.SetTrigger("Ranged Charge");
+        Torso.SetBool("Charging", true);
+        Torso.SetTrigger("Charge");
+    }
+
+    public void StopCharge()
+    {
+        Torso.SetBool("Charging", false);
     }
 
     public void LookUp()
@@ -151,7 +149,6 @@ public class CustomAnimator : MonoBehaviour
     {
         Torso.SetTrigger("Lose Sword");
         Torso.SetBool("Armed", false);
-        Torso.SetBool("Ranged Attacking", false);
     }
 
     public void GetSword()

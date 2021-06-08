@@ -4,13 +4,42 @@ using UnityEngine;
 
 public class Looker : MonoBehaviour
 {
-    [SerializeField] private CustomAnimator Animator;
-
     private Vector2 Direction = Vector2.right;
     private IEnumerator Look;
 
     private void Update()
     {
+        if (Input.GetKey(Controls.Instance.Right))
+        {
+            if (Input.GetKey(Controls.Instance.Up))
+            {
+
+            }
+            else if (Input.GetKey(Controls.Instance.Down))
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        else if (Input.GetKey(Controls.Instance.Left))
+        {
+            if (Input.GetKey(Controls.Instance.Up))
+            {
+
+            }
+            else if (Input.GetKey(Controls.Instance.Down))
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         //If the player is trying to look up
         if (Input.GetKeyDown(Controls.Instance.Up))
         {
@@ -25,9 +54,6 @@ public class Looker : MonoBehaviour
             StartCoroutine(Look);
 
             Direction = Vector2.right + Vector2.up;
-
-            //play the look animation
-            Animator.LookUp();
         }
         //If the player is trying to look down
         else if (Input.GetKeyDown(Controls.Instance.Down))
@@ -42,9 +68,6 @@ public class Looker : MonoBehaviour
             StartCoroutine(Look);
 
             Direction = Vector2.right + Vector2.down;
-
-            //play the look animation
-            Animator.LookDown();
         }
     }
 
@@ -55,15 +78,6 @@ public class Looker : MonoBehaviour
             yield return null;
         }
 
-        Animator.LookForward();
         Direction = Vector2.right;
-    }
-
-    /// <summary>
-    /// Returns the direction the player is looking in, converted into a Vector2.
-    /// </summary>
-    public Vector2 GetLookDirection()
-    {
-        return Direction;
     }
 }

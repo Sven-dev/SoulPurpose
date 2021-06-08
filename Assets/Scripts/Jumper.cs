@@ -20,7 +20,7 @@ public class Jumper : MonoBehaviour
     [Space]
     [SerializeField] private Transform Feet;
     [SerializeField] private LayerMask GroundMask;
-    private bool Grounded = false;
+    public bool Grounded { get; private set; } = false;
 
     [Header("CoyoteTime")]
     [SerializeField] private float AirTime = 0.15f;
@@ -29,11 +29,12 @@ public class Jumper : MonoBehaviour
     [SerializeField][Tooltip("Allows the player to jump after they pressed the button")]
     private float RemindTime = 0.1f;
 
+    [HideInInspector] public bool Hanging = false;
+
     private bool InCoyoteTime = false;
     private bool Jumping = false;
     private bool JumpPrevented = false;
     private bool LongPressing = false;
-    private bool Hanging = false;
     private bool Falling = false;
     private bool JustJumped = false;
 
@@ -83,21 +84,10 @@ public class Jumper : MonoBehaviour
             //If the player is in the air
             else if (!Grounded)
             {
-                //Check if the player is hanging
-                if (!JustJumped && !Hanging)
-                {
-                    float velocity = Rigidbody.velocity.y;
-                    if (velocity > -1.5f && velocity < 1.5f)
-                    {
-                        Animator.Hang();
-                        Hanging = true;
-                    }
-                }
-
                 //Check if the player is falling
                 if (!JustJumped && !Falling)
                 {
-                    if (Rigidbody.velocity.y < -1.5f)
+                    if (Rigidbody.velocity.y < 0)
                     {
                         Animator.Fall();
                         Falling = true;
@@ -108,8 +98,6 @@ public class Jumper : MonoBehaviour
                 if (onground)
                 {
                     Grounded = onground;
-
-                    Hanging = false;
                     Falling = false;
                     Animator.Land();
                 }
@@ -127,6 +115,11 @@ public class Jumper : MonoBehaviour
     private bool GetGround()
     {
         return Physics2D.OverlapBox(Feet.position, new Vector2(Feet.lossyScale.x, Feet.lossyScale.y) / 10.0f, 0, GroundMask);
+    }
+
+    public void Jump()
+    {
+        StartCoroutine(_Jump());
     }
 
     /// <summary>
@@ -162,6 +155,11 @@ public class Jumper : MonoBehaviour
                 Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpCurve.Evaluate(duration) * multiplier);
                 duration += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
+
+                if (Hanging)
+                {
+                    break;
+                }
 
                 //Check if the player is right above a ceiling or on the ground
                 if (Physics2D.OverlapBox(Head.position, new Vector2(Head.lossyScale.x, Head.lossyScale.y) / 10.0f, 0, GroundMask))
